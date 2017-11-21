@@ -26,7 +26,11 @@
 		<packet id="INFO_2">
 			<direction>toCentral</direction>
 			<type>0xA5</type>
-			<responseTypeId>INFO_RESPONSE</responseTypeId>
+			<responses>
+				<response>
+					<responseId>INFO_RESPONSE</responseId>
+				</response>
+			</responses>
 			<channel>1</channel>
 			<binaryPayload>
 				<element>

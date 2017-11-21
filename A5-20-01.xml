@@ -81,7 +81,29 @@
 		<packet id="INFO">
 			<direction>toCentral</direction>
 			<type>0xA5</type>
-			<responseTypeId>INFO_RESPONSE</responseTypeId>
+			<responses>
+				<response>
+					<responseId>INFO_RESPONSE_VALVE_POSITION</responseId>
+					<conditionOperator>e</conditionOperator>
+					<conditionParameterId>MODE</conditionParameterId>
+					<conditionChannel>2</conditionChannel>
+					<conditionValue>0</conditionValue>
+				</response>
+				<response>
+					<responseId>INFO_RESPONSE_TEMPERATURE_SETPOINT1</responseId>
+					<conditionOperator>e</conditionOperator>
+					<conditionParameterId>MODE</conditionParameterId>
+					<conditionChannel>2</conditionChannel>
+					<conditionValue>1</conditionValue>
+				</response>
+				<response>
+					<responseId>INFO_RESPONSE_TEMPERATURE_SETPOINT2</responseId>
+					<conditionOperator>e</conditionOperator>
+					<conditionParameterId>MODE</conditionParameterId>
+					<conditionChannel>2</conditionChannel>
+					<conditionValue>2</conditionValue>
+				</response>
+			</responses>
 			<channel>1</channel>
 			<binaryPayload>
 				<element>
@@ -101,7 +123,7 @@
 				</element>
 			</binaryPayload>
 		</packet>
-		<packet id="INFO_RESPONSE">
+		<packet id="INFO_RESPONSE_VALVE_POSITION">
 			<direction>fromCentral</direction>
 			<type>0xA5</type>
 			<subtype>1</subtype>
@@ -121,6 +143,73 @@
 					<bitIndex>24</bitIndex>
 					<bitSize>8</bitSize>
 					<parameterId>SERVICE_COMMAND</parameterId>
+				</element>
+				<element>
+					<bitIndex>36</bitIndex>
+					<bitSize>1</bitSize>
+					<constValueInteger>1</constValueInteger>
+				</element>
+			</binaryPayload>
+		</packet>
+		<packet id="INFO_RESPONSE_TEMPERATURE_SETPOINT1">
+			<direction>fromCentral</direction>
+			<type>0xA5</type>
+			<subtype>1</subtype>
+			<channel>2</channel>
+			<binaryPayload>
+				<element>
+					<bitIndex>8</bitIndex>
+					<bitSize>8</bitSize>
+					<parameterId>SETPOINT_TEMPERATURE</parameterId>
+				</element>
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<parameterChannel>1</parameterChannel>
+					<parameterId>TEMPERATURE</parameterId>
+				</element>
+				<element>
+					<bitIndex>24</bitIndex>
+					<bitSize>8</bitSize>
+					<parameterId>SERVICE_COMMAND</parameterId>
+				</element>
+				<element>
+					<bitIndex>29</bitIndex>
+					<bitSize>1</bitSize>
+					<constValueInteger>1</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>36</bitIndex>
+					<bitSize>1</bitSize>
+					<constValueInteger>1</constValueInteger>
+				</element>
+			</binaryPayload>
+		</packet>
+		<packet id="INFO_RESPONSE_TEMPERATURE_SETPOINT2">
+			<direction>fromCentral</direction>
+			<type>0xA5</type>
+			<subtype>1</subtype>
+			<channel>2</channel>
+			<binaryPayload>
+				<element>
+					<bitIndex>8</bitIndex>
+					<bitSize>8</bitSize>
+					<parameterId>SETPOINT_TEMPERATURE</parameterId>
+				</element>
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<parameterId>ACTUAL_TEMPERATURE</parameterId>
+				</element>
+				<element>
+					<bitIndex>24</bitIndex>
+					<bitSize>8</bitSize>
+					<parameterId>SERVICE_COMMAND</parameterId>
+				</element>
+				<element>
+					<bitIndex>29</bitIndex>
+					<bitSize>1</bitSize>
+					<constValueInteger>1</constValueInteger>
 				</element>
 				<element>
 					<bitIndex>36</bitIndex>
@@ -362,6 +451,32 @@
 			</parameter>
 		</variables>
 		<variables id="EnOceanValveDrive">
+			<parameter id="MODE">
+				<properties>
+					<readable>true</readable>
+					<writeable>true</writeable>
+					<!-- Physical type is not signed -->
+					<signed>false</signed>
+				</properties>
+				<logicalEnumeration>
+					<defaultValue>0</defaultValue>
+					<value>
+						<id>ValvePosition</id>
+						<index>0</index>
+					</value>
+					<value>
+						<id>TemperatureSetpointInternalTemperature</id>
+						<index>1</index>
+					</value>
+					<value>
+						<id>TemperatureSetpointExternalTemperature</id>
+						<index>2</index>
+					</value>
+				</logicalEnumeration>
+				<physicalInteger groupId="MODE">
+					<operationType>store</operationType>
+				</physicalInteger>
+			</parameter>
 			<parameter id="VALVE_POSITION">
 				<properties>
 					<readable>true</readable>
@@ -375,6 +490,58 @@
 					<maximumValue>100</maximumValue>
 				</logicalInteger>
 				<physicalInteger groupId="VALVE_POSITION">
+					<operationType>store</operationType>
+				</physicalInteger>
+			</parameter>
+			<parameter id="ACTUAL_TEMPERATURE">
+				<properties>
+					<readable>true</readable>
+					<writeable>true</writeable>
+					<!-- Physical type is not signed -->
+					<signed>false</signed>
+					<unit>°C</unit>
+					<casts>
+						<round>
+							<decimalPlaces>1</decimalPlaces>
+						</round>
+						<decimalOffset>
+							<direction>fromPacket</direction>
+							<subtractFromOffset>40</subtractFromOffset>
+						</decimalOffset>
+						<decimalIntegerScale>
+							<factor>6.375</factor>
+						</decimalIntegerScale>
+					</casts>
+				</properties>
+				<logicalDecimal>
+					<minimumValue>0.0</minimumValue>
+					<maximumValue>40.0</maximumValue>
+				</logicalDecimal>
+				<physicalInteger groupId="ACTUAL_TEMPERATURE">
+					<operationType>store</operationType>
+				</physicalInteger>
+			</parameter>
+			<parameter id="SETPOINT_TEMPERATURE">
+				<properties>
+					<readable>true</readable>
+					<writeable>true</writeable>
+					<!-- Physical type is not signed -->
+					<signed>false</signed>
+					<unit>°C</unit>
+					<casts>
+						<round>
+							<decimalPlaces>1</decimalPlaces>
+						</round>
+						<decimalIntegerScale>
+							<factor>6.375</factor>
+						</decimalIntegerScale>
+					</casts>
+				</properties>
+				<logicalDecimal>
+					<minimumValue>0.0</minimumValue>
+					<maximumValue>40.0</maximumValue>
+				</logicalDecimal>
+				<physicalInteger groupId="SETPOINT_TEMPERATURE">
 					<operationType>store</operationType>
 				</physicalInteger>
 			</parameter>

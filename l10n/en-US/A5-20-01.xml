@@ -3,7 +3,7 @@
 	<supportedDevices>
 		<device id="A5-20-01">
 			<description>Heating Radiator Valve Drive</description>
-			<longDescription>The EEP "A5-20-01" specifies a heating readiator valve drive. Please note that you need a PID controller (e. g. the heating controller node in Node-BLUE) to use it. You should also note the "SERVICE_COMMAND" "SummerMode" which should always be set in summer to reduce energy consumption. It makes the actuator send packets and accept new input every few hours instead of every few minutes.</longDescription>
+			<longDescription>The EEP "A5-20-01" specifies a heating readiator valve drive. We recommend using it with an external PID controller (e. g. the heating controller node in Node-BLUE). You should also note the "SERVICE_COMMAND" "SummerMode" which should always be set in summer to reduce energy consumption. It makes the actuator send packets and accept new input every few hours instead of every few minutes.</longDescription>
 		</device>
 	</supportedDevices>
 	<parameterGroups>
@@ -68,9 +68,21 @@
 			</parameter>
 		</variables>
 		<variables id="EnOceanValveDrive">
+			<parameter id="MODE">
+				<label>Mode</label>
+				<description>Set this variable to switch between the internal PID controller and setting the "SETPOINT_TEMPERATURE" and an external one (setting "VALVE_POSITION").</description>
+			</parameter>
 			<parameter id="VALVE_POSITION">
 				<label>Valve position</label>
-				<description>The valve position to set.</description>
+				<description>The valve position to set. Only used when "MODE" is "0" (= "ValvePosition").</description>
+			</parameter>
+			<parameter id="ACTUAL_TEMPERATURE">
+				<label>Actual temperature</label>
+				<description>An externally measured temperature to be used by the internal PID controller. Only used when "MODE" is "2" (= "TemperatureSetpointExternalTemperature").</description>
+			</parameter>
+			<parameter id="SETPOINT_TEMPERATURE">
+				<label>Setpoint temperature</label>
+				<description>The temperature setpoint to set. Only used when "MODE" is "1" or "2" (= "TemperatureSetpointInternalTemperature" or "TemperatureSetpointExternalTemperature").</description>
 			</parameter>
 			<parameter id="SERVICE_COMMAND">
 				<label>Service command</label>
