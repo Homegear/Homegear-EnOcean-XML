@@ -7,7 +7,7 @@
 		</device>
 	</supportedDevices>
 	<properties>
-		<timeout>7200</timeout>
+		<timeout>86400</timeout>
 	</properties>
 	<functions xmlns="https://homegear.eu/xmlNamespaces/DeviceType">
 		<function xmlns="https://homegear.eu/xmlNamespaces/FunctionGroupType" channel="0" type="MAINTENANCE">
