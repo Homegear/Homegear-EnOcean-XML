@@ -46,7 +46,7 @@
 				</element>
 			</binaryPayload>
 		</packet>
-		<packet id="MEASUREMENT_INFO">
+		<packet id="MEASUREMENT_INFO_GENERAL">
 			<direction>toCentral</direction>
 			<type>0xD2</type>
 			<channelIndex>2</channelIndex>
@@ -61,12 +61,132 @@
 				<element>
 					<bitIndex>16</bitIndex>
 					<bitSize>3</bitSize>
-					<parameterId>MEASUREMENT_UNIT</parameterId>
+					<parameterId>LAST_MEASUREMENT_UNIT</parameterId>
 				</element>
 				<element>
 					<bitIndex>24</bitIndex>
 					<bitSize>32</bitSize>
-					<parameterId>MEASUREMENT_VALUE</parameterId>
+					<parameterId>LAST_MEASUREMENT_VALUE</parameterId>
+				</element>
+			</binaryPayload>
+		</packet>
+		<packet id="MEASUREMENT_INFO_WS">
+			<direction>toCentral</direction>
+			<type>0xD2</type>
+			<channelIndex>2</channelIndex>
+			<channelSize>5</channelSize>
+			<channelIndexOffset>1</channelIndexOffset>
+			<binaryPayload>
+				<element>
+					<bitIndex>12</bitIndex>
+					<bitSize>4</bitSize>
+					<constValueInteger>7</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>3</bitSize>
+					<constValueInteger>0</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>24</bitIndex>
+					<bitSize>32</bitSize>
+					<parameterId>MEASUREMENT_VALUE_WS</parameterId>
+				</element>
+			</binaryPayload>
+		</packet>
+		<packet id="MEASUREMENT_INFO_WH">
+			<direction>toCentral</direction>
+			<type>0xD2</type>
+			<channelIndex>2</channelIndex>
+			<channelSize>5</channelSize>
+			<channelIndexOffset>1</channelIndexOffset>
+			<binaryPayload>
+				<element>
+					<bitIndex>12</bitIndex>
+					<bitSize>4</bitSize>
+					<constValueInteger>7</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>3</bitSize>
+					<constValueInteger>1</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>24</bitIndex>
+					<bitSize>32</bitSize>
+					<parameterId>MEASUREMENT_VALUE_WH</parameterId>
+				</element>
+			</binaryPayload>
+		</packet>
+		<packet id="MEASUREMENT_INFO_KWH">
+			<direction>toCentral</direction>
+			<type>0xD2</type>
+			<channelIndex>2</channelIndex>
+			<channelSize>5</channelSize>
+			<channelIndexOffset>1</channelIndexOffset>
+			<binaryPayload>
+				<element>
+					<bitIndex>12</bitIndex>
+					<bitSize>4</bitSize>
+					<constValueInteger>7</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>3</bitSize>
+					<constValueInteger>2</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>24</bitIndex>
+					<bitSize>32</bitSize>
+					<parameterId>MEASUREMENT_VALUE_KWH</parameterId>
+				</element>
+			</binaryPayload>
+		</packet>
+		<packet id="MEASUREMENT_INFO_W">
+			<direction>toCentral</direction>
+			<type>0xD2</type>
+			<channelIndex>2</channelIndex>
+			<channelSize>5</channelSize>
+			<channelIndexOffset>1</channelIndexOffset>
+			<binaryPayload>
+				<element>
+					<bitIndex>12</bitIndex>
+					<bitSize>4</bitSize>
+					<constValueInteger>7</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>3</bitSize>
+					<constValueInteger>3</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>24</bitIndex>
+					<bitSize>32</bitSize>
+					<parameterId>MEASUREMENT_VALUE_W</parameterId>
+				</element>
+			</binaryPayload>
+		</packet>
+		<packet id="MEASUREMENT_INFO_KW">
+			<direction>toCentral</direction>
+			<type>0xD2</type>
+			<channelIndex>2</channelIndex>
+			<channelSize>5</channelSize>
+			<channelIndexOffset>1</channelIndexOffset>
+			<binaryPayload>
+				<element>
+					<bitIndex>12</bitIndex>
+					<bitSize>4</bitSize>
+					<constValueInteger>7</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>3</bitSize>
+					<constValueInteger>4</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>24</bitIndex>
+					<bitSize>32</bitSize>
+					<parameterId>MEASUREMENT_VALUE_KW</parameterId>
 				</element>
 			</binaryPayload>
 		</packet>
@@ -570,7 +690,41 @@
 					<packet id="MEASUREMENT_SET">
 						<type>set</type>
 					</packet>
-					<packet id="MEASUREMENT_INFO">
+				</packets>
+			</parameter>
+			<parameter id="LAST_MEASUREMENT_UNIT">
+				<properties>
+					<readable>true</readable>
+					<writeable>false</writeable>
+				</properties>
+				<logicalEnumeration>
+					<defaultValue>2</defaultValue>
+					<value>
+						<id>Energy [Ws]</id>
+						<index>0</index>
+					</value>
+					<value>
+						<id>Energy [Wh]</id>
+						<index>1</index>
+					</value>
+					<value>
+						<id>Energy [KWh]</id>
+						<index>2</index>
+					</value>
+					<value>
+						<id>Power [W]</id>
+						<index>3</index>
+					</value>
+					<value>
+						<id>Power [KW]</id>
+						<index>4</index>
+					</value>
+				</logicalEnumeration>
+				<physicalInteger groupId="MEASUREMENT_UNIT">
+					<operationType>command</operationType>
+				</physicalInteger>
+				<packets>
+					<packet id="MEASUREMENT_INFO_GENERAL">
 						<type>event</type>
 					</packet>
 				</packets>
@@ -623,19 +777,109 @@
 					</packet>
 				</packets>
 			</parameter>
-			<parameter id="MEASUREMENT_VALUE">
+			<parameter id="LAST_MEASUREMENT_VALUE">
 				<properties>
 					<readable>true</readable>
-					<writeable>true</writeable>
+					<writeable>false</writeable>
 				</properties>
 				<logicalInteger>
 					<minimumValue>0</minimumValue>
 				</logicalInteger>
-				<physicalInteger groupId="MEASUREMENT_VALUE">
+				<physicalInteger groupId="LAST_MEASUREMENT_VALUE">
 					<operationType>command</operationType>
 				</physicalInteger>
 				<packets>
-					<packet id="MEASUREMENT_INFO">
+					<packet id="MEASUREMENT_INFO_GENERAL">
+						<type>event</type>
+					</packet>
+				</packets>
+			</parameter>
+			<parameter id="MEASUREMENT_VALUE_WS">
+				<properties>
+					<readable>true</readable>
+					<writeable>false</writeable>
+					<unit>Ws</unit>
+				</properties>
+				<logicalInteger>
+					<minimumValue>0</minimumValue>
+				</logicalInteger>
+				<physicalInteger groupId="MEASUREMENT_VALUE_WS">
+					<operationType>command</operationType>
+				</physicalInteger>
+				<packets>
+					<packet id="MEASUREMENT_INFO_WS">
+						<type>event</type>
+					</packet>
+				</packets>
+			</parameter>
+			<parameter id="MEASUREMENT_VALUE_WH">
+				<properties>
+					<readable>true</readable>
+					<writeable>false</writeable>
+					<unit>Wh</unit>
+				</properties>
+				<logicalInteger>
+					<minimumValue>0</minimumValue>
+				</logicalInteger>
+				<physicalInteger groupId="MEASUREMENT_VALUE_WH">
+					<operationType>command</operationType>
+				</physicalInteger>
+				<packets>
+					<packet id="MEASUREMENT_INFO_WH">
+						<type>event</type>
+					</packet>
+				</packets>
+			</parameter>
+			<parameter id="MEASUREMENT_VALUE_KWH">
+				<properties>
+					<readable>true</readable>
+					<writeable>false</writeable>
+					<unit>kWh</unit>
+				</properties>
+				<logicalInteger>
+					<minimumValue>0</minimumValue>
+				</logicalInteger>
+				<physicalInteger groupId="MEASUREMENT_VALUE_KWH">
+					<operationType>command</operationType>
+				</physicalInteger>
+				<packets>
+					<packet id="MEASUREMENT_INFO_KWH">
+						<type>event</type>
+					</packet>
+				</packets>
+			</parameter>
+			<parameter id="MEASUREMENT_VALUE_W">
+				<properties>
+					<readable>true</readable>
+					<writeable>false</writeable>
+					<unit>W</unit>
+				</properties>
+				<logicalInteger>
+					<minimumValue>0</minimumValue>
+				</logicalInteger>
+				<physicalInteger groupId="MEASUREMENT_VALUE_W">
+					<operationType>command</operationType>
+				</physicalInteger>
+				<packets>
+					<packet id="MEASUREMENT_INFO_W">
+						<type>event</type>
+					</packet>
+				</packets>
+			</parameter>
+			<parameter id="MEASUREMENT_VALUE_KW">
+				<properties>
+					<readable>true</readable>
+					<writeable>false</writeable>
+					<unit>kW</unit>
+				</properties>
+				<logicalInteger>
+					<minimumValue>0</minimumValue>
+				</logicalInteger>
+				<physicalInteger groupId="MEASUREMENT_VALUE_KW">
+					<operationType>command</operationType>
+				</physicalInteger>
+				<packets>
+					<packet id="MEASUREMENT_INFO_KW">
 						<type>event</type>
 					</packet>
 				</packets>
