@@ -351,10 +351,22 @@
 				<properties>
 					<readable>true</readable>
 					<writeable>false</writeable>
+					<resetAfterRestart>true</resetAfterRestart>
 				</properties>
-				<logicalBoolean>
-					<defaultValue>false</defaultValue>
-				</logicalBoolean>
+				<logicalEnumeration>
+                	<value>
+                        <id>Undefined</id>
+                        <index>-1</index>
+                    </value>
+                    <value>
+                        <id>Closed</id>
+                        <index>0</index>
+                    </value>
+                    <value>
+                        <id>Open</id>
+                        <index>1</index>
+                    </value>
+                </logicalEnumeration>
 				<physicalInteger groupId="STATE">
 					<operationType>command</operationType>
 				</physicalInteger>
