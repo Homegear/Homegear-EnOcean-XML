@@ -6,6 +6,9 @@
 			<typeNumber>0xFFF60201</typeNumber>
 		</device>
 	</supportedDevices>
+	<properties>
+		<pairingMethod>createDevice+[PAIRING]</pairingMethod>
+	</properties>
 	<functions xmlns="https://homegear.eu/xmlNamespaces/DeviceType">
 		<function xmlns="https://homegear.eu/xmlNamespaces/FunctionGroupType" channel="0" type="MAINTENANCE">
 			<properties>
