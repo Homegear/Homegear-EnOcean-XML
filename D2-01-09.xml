@@ -407,6 +407,38 @@
 				</element>
 			</binaryPayload>
 		</packet>
+		<packet id="EXTERNAL_INTERFACE_SETTINGS_SET">
+			<direction>fromCentral</direction>
+			<type>0xD2</type>
+			<subtype>1</subtype>
+			<binaryPayload>
+				<element>
+					<bitIndex>8</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>11</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>16</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>1</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>24</bitIndex>
+					<bitSize>16</bitSize>
+					<constValueInteger>0</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>40</bitIndex>
+					<bitSize>16</bitSize>
+					<constValueInteger>0</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>56</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0</constValueInteger>
+				</element>
+			</binaryPayload>
+		</packet>
 	</packets>
 	<parameterGroups xmlns="https://homegear.eu/xmlNamespaces/DeviceType">
 		<configParameters id="EnOceanConfig">
@@ -881,6 +913,21 @@
 				<packets>
 					<packet id="MEASUREMENT_INFO_KW">
 						<type>event</type>
+					</packet>
+				</packets>
+			</parameter>
+			<parameter id="RESET_EXTERNAL_INTERFACE_SETTINGS">
+				<properties>
+					<readable>false</readable>
+					<writeable>true</writeable>
+				</properties>
+				<logicalAction/>
+				<physicalNone groupId="RESET_EXTERNAL_INTERFACE_SETTINGS">
+					<operationType>command</operationType>
+				</physicalNone>
+				<packets>
+					<packet id="EXTERNAL_INTERFACE_SETTINGS_SET">
+						<type>set</type>
 					</packet>
 				</packets>
 			</parameter>
