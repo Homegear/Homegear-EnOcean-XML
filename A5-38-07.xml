@@ -248,12 +248,6 @@
 				<properties>
 					<readable>true</readable>
 					<writeable>true</writeable>
-					<casts>
-						<integerIntegerScale>
-							<operation>multiplication</operation>
-							<factor>2.55</factor>
-						</integerIntegerScale>
-					</casts>
 				</properties>
 				<logicalInteger>
 					<minimumValue>0</minimumValue>
