@@ -215,7 +215,6 @@
 				<properties>
 					<readable>true</readable>
 					<writeable>false</writeable>
-					<service>true</service>
 					<!-- Physical type is not signed -->
 					<signed>false</signed>
 				</properties>
@@ -246,7 +245,6 @@
 				<properties>
 					<readable>true</readable>
 					<writeable>false</writeable>
-					<service>true</service>
 					<!-- Physical type is not signed -->
 					<signed>false</signed>
 				</properties>
