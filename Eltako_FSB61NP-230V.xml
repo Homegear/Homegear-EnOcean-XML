@@ -356,6 +356,21 @@
 					<operationType>command</operationType>
 				</physicalNone>
 			</parameter>
+			<parameter id="CURRENT_SPEED">
+				<properties>
+					<readable>true</readable>
+					<writeable>false</writeable>
+					<unit>%/s</unit>
+				</properties>
+				<logicalInteger>
+					<minimumValue>0</minimumValue>
+					<maximumValue>100</maximumValue>
+					<defaultValue>0</defaultValue>
+				</logicalInteger>
+				<physicalNone groupId="CURRENT_SPEED">
+					<operationType>command</operationType>
+				</physicalNone>
+			</parameter>
 			<parameter id="LEVEL">
 				<properties>
 					<readable>true</readable>
