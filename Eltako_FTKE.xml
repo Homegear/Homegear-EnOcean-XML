@@ -109,6 +109,26 @@
 				<properties>
 					<readable>true</readable>
 					<writeable>false</writeable>
+				</properties>
+				<logicalBoolean>
+					<defaultValue>false</defaultValue>
+				</logicalBoolean>
+				<physicalInteger groupId="STATE">
+					<operationType>command</operationType>
+				</physicalInteger>
+				<packets>
+					<packet id="INFO_1">
+						<type>event</type>
+					</packet>
+					<packet id="INFO_2">
+						<type>event</type>
+					</packet>
+				</packets>
+			</parameter>
+			<parameter id="SAFE_STATE">
+				<properties>
+					<readable>true</readable>
+					<writeable>false</writeable>
 					<resetAfterRestart>true</resetAfterRestart>
 				</properties>
                 <logicalEnumeration>

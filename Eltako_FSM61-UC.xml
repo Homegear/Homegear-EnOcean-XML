@@ -348,9 +348,85 @@
 					</packet>
 				</packets>
 			</parameter>
+			<parameter id="SAFE_STATE">
+				<properties>
+					<readable>true</readable>
+					<writeable>false</writeable>
+					<resetAfterRestart>true</resetAfterRestart>
+				</properties>
+				<logicalEnumeration>
+                	<value>
+                        <id>Undefined</id>
+                        <index>-1</index>
+                    </value>
+                    <value>
+                        <id>Closed</id>
+                        <index>0</index>
+                    </value>
+                    <value>
+                        <id>Open</id>
+                        <index>1</index>
+                    </value>
+                </logicalEnumeration>
+				<physicalInteger groupId="STATE">
+					<operationType>command</operationType>
+				</physicalInteger>
+				<packets>
+					<packet id="B0_0">
+						<type>event</type>
+					</packet>
+					<packet id="B0_1">
+						<type>event</type>
+					</packet>
+					<packet id="B0_2">
+						<type>event</type>
+					</packet>
+					<packet id="B0_3">
+						<type>event</type>
+					</packet>
+					<packet id="B0E_0">
+						<type>event</type>
+					</packet>
+					<packet id="B0E_1">
+						<type>event</type>
+					</packet>
+				</packets>
+			</parameter>
 		</variables>
 		<variables id="EnOceanVariables4">
 			<parameter id="STATE">
+				<properties>
+					<readable>true</readable>
+					<writeable>false</writeable>
+				</properties>
+				<logicalBoolean>
+					<defaultValue>false</defaultValue>
+				</logicalBoolean>
+				<physicalInteger groupId="STATE">
+					<operationType>command</operationType>
+				</physicalInteger>
+				<packets>
+					<packet id="B1_0">
+						<type>event</type>
+					</packet>
+					<packet id="B1_1">
+						<type>event</type>
+					</packet>
+					<packet id="B1_2">
+						<type>event</type>
+					</packet>
+					<packet id="B1_3">
+						<type>event</type>
+					</packet>
+					<packet id="B1E_0">
+						<type>event</type>
+					</packet>
+					<packet id="B1E_1">
+						<type>event</type>
+					</packet>
+				</packets>
+			</parameter>
+			<parameter id="SAFE_STATE">
 				<properties>
 					<readable>true</readable>
 					<writeable>false</writeable>
