@@ -60,6 +60,11 @@
 					<parameterId>LEVEL</parameterId>
 				</element>
 				<element>
+					<bitIndex>28</bitIndex>
+					<bitSize>1</bitSize>
+					<parameterId>RUNNING</parameterId>
+				</element>
+				<element>
 					<bitIndex>36</bitIndex>
 					<bitSize>1</bitSize>
 					<constValueInteger>1</constValueInteger>
@@ -259,6 +264,29 @@
 					<packet id="LEVEL_SET">
 						<type>set</type>
 						<responseId>LEVEL_INFO</responseId>
+					</packet>
+				</packets>
+			</parameter>
+			<parameter id="RUNNING">
+				<properties>
+					<readable>true</readable>
+					<writeable>false</writeable>
+					<casts>
+						<booleanInteger>
+							<trueValue>0</trueValue>
+							<falseValue>1</falseValue>
+						</booleanInteger>
+					</casts>
+				</properties>
+				<logicalBoolean>
+					<defaultValue>false</defaultValue>
+				</logicalBoolean>
+				<physicalInteger>
+					<operationType>command</operationType>
+				</physicalInteger>
+				<packets>
+					<packet id="LEVEL_INFO">
+						<type>event</type>
 					</packet>
 				</packets>
 			</parameter>
