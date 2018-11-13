@@ -142,9 +142,21 @@
 					<readable>true</readable>
 					<writeable>false</writeable>
 				</properties>
-				<logicalBoolean>
-					<defaultValue>false</defaultValue>
-				</logicalBoolean>
+				<logicalEnumeration>
+					<defaultValue>0</defaultValue>
+					<value>
+						<id>Closed</id>
+						<index>0</index>
+					</value>
+					<value>
+						<id>Open</id>
+						<index>1</index>
+					</value>
+					<value>
+						<id>Tilted</id>
+						<index>2</index>
+					</value>
+				</logicalEnumeration>
 				<physicalInteger groupId="STATE">
 					<operationType>command</operationType>
 				</physicalInteger>
