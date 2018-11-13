@@ -166,8 +166,7 @@
 				<element>
 					<bitIndex>16</bitIndex>
 					<bitSize>8</bitSize>
-					<parameterChannel>1</parameterChannel>
-					<parameterId>TEMPERATURE</parameterId>
+					<constValueInteger>0</constValueInteger>
 				</element>
 				<element>
 					<bitIndex>24</bitIndex>
@@ -259,6 +258,11 @@
 				<properties>
 					<writeable>false</writeable>
 					<service>true</service>
+					<casts>
+						<booleanInteger>
+							<invert>true</invert>
+						</booleanInteger>
+					</casts>
 				</properties>
 				<logicalBoolean/>
 				<physicalInteger groupId="LOWBAT">
@@ -326,7 +330,6 @@
 				<properties>
 					<readable>true</readable>
 					<writeable>false</writeable>
-					<service>true</service>
 					<casts>
 						<booleanInteger>
 							<invert>true</invert>
@@ -517,6 +520,7 @@
 				<logicalDecimal>
 					<minimumValue>0.0</minimumValue>
 					<maximumValue>40.0</maximumValue>
+					<defaultValue>40.0</defaultValue>
 				</logicalDecimal>
 				<physicalInteger groupId="ACTUAL_TEMPERATURE">
 					<operationType>store</operationType>
