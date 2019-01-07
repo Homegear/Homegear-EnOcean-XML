@@ -58,6 +58,7 @@
 					<bitIndex>8</bitIndex>
 					<bitSize>8</bitSize>
 					<parameterId>LEVEL</parameterId>
+<<<<<<< HEAD
 				</element>
 				<element>
 					<bitIndex>28</bitIndex>
@@ -68,12 +69,22 @@
 					<bitIndex>30</bitIndex>
 					<bitSize>2</bitSize>
 					<parameterId>STATUS</parameterId>
+=======
+>>>>>>> e27361ad6c9cee6288db6b7ad8b26e2d438c37eb
 				</element>
+				<element>
+					<bitIndex>28</bitIndex>
+					<bitSize>1</bitSize>
+					<parameterId>RUNNING</parameterId>
+				</element>
+<<<<<<< HEAD
+=======
 				<element>
 					<bitIndex>36</bitIndex>
 					<bitSize>1</bitSize>
 					<constValueInteger>1</constValueInteger>
 				</element>
+>>>>>>> e27361ad6c9cee6288db6b7ad8b26e2d438c37eb
 			</binaryPayload>
 		</packet>
 		<packet id="LEVEL_SET">
@@ -272,6 +283,7 @@
 					</packet>
 				</packets>
 			</parameter>
+<<<<<<< HEAD
 			<parameter id="END_POSITION">
 				<properties>
 					<readable>true</readable>
@@ -331,6 +343,24 @@
 				</logicalEnumeration>
 				<physicalInteger groupId="STATUS">
 					<operationType>store</operationType>
+=======
+			<parameter id="RUNNING">
+				<properties>
+					<readable>true</readable>
+					<writeable>false</writeable>
+					<casts>
+						<booleanInteger>
+							<trueValue>0</trueValue>
+							<falseValue>1</falseValue>
+						</booleanInteger>
+					</casts>
+				</properties>
+				<logicalBoolean>
+					<defaultValue>false</defaultValue>
+				</logicalBoolean>
+				<physicalInteger>
+					<operationType>command</operationType>
+>>>>>>> e27361ad6c9cee6288db6b7ad8b26e2d438c37eb
 				</physicalInteger>
 				<packets>
 					<packet id="LEVEL_INFO">
