@@ -57,17 +57,22 @@
 				<element>
 					<bitIndex>8</bitIndex>
 					<bitSize>8</bitSize>
-					<constValueInteger>7</constValueInteger>
+					<parameterId>LEVEL</parameterId>
+				</element>
+				<element>
+					<bitIndex>28</bitIndex>
+					<bitSize>2</bitSize>
+					<parameterId>END_POSITION</parameterId>
+				</element>
+				<element>
+					<bitIndex>30</bitIndex>
+					<bitSize>2</bitSize>
+					<parameterId>STATUS</parameterId>
 				</element>
 				<element>
 					<bitIndex>36</bitIndex>
 					<bitSize>1</bitSize>
 					<constValueInteger>1</constValueInteger>
-				</element>
-				<element>
-					<bitIndex>16</bitIndex>
-					<bitSize>8</bitSize>
-					<parameterId>LEVEL</parameterId>
 				</element>
 			</binaryPayload>
 		</packet>
@@ -264,6 +269,72 @@
 					<packet id="LEVEL_SET">
 						<type>set</type>
 						<responseId>LEVEL_INFO</responseId>
+					</packet>
+				</packets>
+			</parameter>
+			<parameter id="END_POSITION">
+				<properties>
+					<readable>true</readable>
+					<writeable>false</writeable>
+				</properties>
+				<logicalEnumeration>
+					<defaultValue>0</defaultValue>
+					<value>
+						<id>Unknown</id>
+						<index>0</index>
+					</value>
+					<value>
+						<id>In between</id>
+						<index>1</index>
+					</value>
+					<value>
+						<id>Open</id>
+						<index>2</index>
+					</value>
+					<value>
+						<id>Closed</id>
+						<index>3</index>
+					</value>
+				</logicalEnumeration>
+				<physicalInteger groupId="END_POSITION">
+					<operationType>store</operationType>
+				</physicalInteger>
+				<packets>
+					<packet id="LEVEL_INFO">
+						<type>event</type>
+					</packet>
+				</packets>
+			</parameter>
+			<parameter id="STATUS">
+				<properties>
+					<readable>true</readable>
+					<writeable>false</writeable>
+				</properties>
+				<logicalEnumeration>
+					<defaultValue>0</defaultValue>
+					<value>
+						<id>Unknown</id>
+						<index>0</index>
+					</value>
+					<value>
+						<id>Stopped</id>
+						<index>1</index>
+					</value>
+					<value>
+						<id>Moving</id>
+						<index>2</index>
+					</value>
+					<value>
+						<id>Unknown</id>
+						<index>3</index>
+					</value>
+				</logicalEnumeration>
+				<physicalInteger groupId="STATUS">
+					<operationType>store</operationType>
+				</physicalInteger>
+				<packets>
+					<packet id="LEVEL_INFO">
+						<type>event</type>
 					</packet>
 				</packets>
 			</parameter>
