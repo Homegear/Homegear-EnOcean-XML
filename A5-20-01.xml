@@ -8,7 +8,7 @@
 	</supportedDevices>
 	<properties>
 		<receiveMode>wakeUp</receiveMode>
-		<timeout>7200</timeout>
+		<timeout>86400</timeout>
 		<pairingMethod>setInstallMode</pairingMethod>
 	</properties>
 	<functions xmlns="https://homegear.eu/xmlNamespaces/DeviceType">
