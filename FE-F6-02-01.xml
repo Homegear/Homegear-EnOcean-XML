@@ -54,6 +54,7 @@
 			<channel>1</channel>
 			<binaryPayload>
 				<element>
+					<!-- NU = 1 -->
 					<bitIndex>51</bitIndex>
 					<bitSize>1</bitSize>
 					<constValueInteger>1</constValueInteger>
@@ -69,6 +70,7 @@
 					<parameterId>STATE</parameterId>
 				</element>
 				<element>
+					<!-- No second action -->
 					<bitIndex>15</bitIndex>
 					<bitSize>1</bitSize>
 					<constValueInteger>0</constValueInteger>
@@ -81,11 +83,13 @@
 			<channel>1</channel>
 			<binaryPayload>
 				<element>
+					<!-- NU = 0 -->
 					<bitIndex>51</bitIndex>
 					<bitSize>1</bitSize>
 					<constValueInteger>0</constValueInteger>
 				</element>
 				<element>
+					<!-- 3 or 4 buttons pressed simutaniously -->
 					<bitIndex>8</bitIndex>
 					<bitSize>3</bitSize>
 					<constValueInteger>3</constValueInteger>
@@ -95,11 +99,6 @@
 					<bitSize>1</bitSize>
 					<parameterId>STATE</parameterId>
 				</element>
-				<element>
-					<bitIndex>15</bitIndex>
-					<bitSize>1</bitSize>
-					<constValueInteger>0</constValueInteger>
-				</element>
 			</binaryPayload>
 		</packet>
 		<packet id="A0_2">
@@ -108,6 +107,7 @@
 			<channel>1</channel>
 			<binaryPayload>
 				<element>
+					<!-- Released -->
 					<bitIndex>11</bitIndex>
 					<bitSize>1</bitSize>
 					<constValueInteger>0</constValueInteger>
@@ -1048,6 +1048,22 @@
 					<packet id="A0_2">
 						<type>event</type>
 					</packet>
+					<!-- Below packets are unverified -->
+					<packet id="A0E_0">
+						<type>event</type>
+					</packet>
+					<packet id="A0E_1">
+						<type>event</type>
+					</packet>
+					<packet id="A0E_2">
+						<type>event</type>
+					</packet>
+					<packet id="A0E_3">
+						<type>event</type>
+					</packet>
+					<packet id="A0E_4">
+						<type>event</type>
+					</packet>
 				</packets>
 			</parameter>
 		</variables>
@@ -1071,6 +1087,22 @@
 						<type>event</type>
 					</packet>
 					<packet id="A1_2">
+						<type>event</type>
+					</packet>
+					<!-- Below packets are unverified -->
+					<packet id="A1E_0">
+						<type>event</type>
+					</packet>
+					<packet id="A1E_1">
+						<type>event</type>
+					</packet>
+					<packet id="A1E_2">
+						<type>event</type>
+					</packet>
+					<packet id="A1E_3">
+						<type>event</type>
+					</packet>
+					<packet id="A1E_4">
 						<type>event</type>
 					</packet>
 				</packets>
@@ -1098,6 +1130,22 @@
 					<packet id="B0_2">
 						<type>event</type>
 					</packet>
+					<!-- Below packets are unverified -->
+					<packet id="B0E_0">
+						<type>event</type>
+					</packet>
+					<packet id="B0E_1">
+						<type>event</type>
+					</packet>
+					<packet id="B0E_2">
+						<type>event</type>
+					</packet>
+					<packet id="B0E_3">
+						<type>event</type>
+					</packet>
+					<packet id="B0E_4">
+						<type>event</type>
+					</packet>
 				</packets>
 			</parameter>
 		</variables>
@@ -1121,6 +1169,22 @@
 						<type>event</type>
 					</packet>
 					<packet id="B1_2">
+						<type>event</type>
+					</packet>
+					<!-- Below packets are unverified -->
+					<packet id="B1E_0">
+						<type>event</type>
+					</packet>
+					<packet id="B1E_1">
+						<type>event</type>
+					</packet>
+					<packet id="B1E_2">
+						<type>event</type>
+					</packet>
+					<packet id="B1E_3">
+						<type>event</type>
+					</packet>
+					<packet id="B1E_4">
 						<type>event</type>
 					</packet>
 				</packets>
