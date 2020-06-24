@@ -7,7 +7,8 @@
 		</device>
 	</supportedDevices>
 	<properties>
-		<pairingMethod>setInstallMode</pairingMethod>
+		<receiveMode>always</receiveMode>
+		<pairingMethod>setInstallMode+[remoteCommissioning]</pairingMethod>
 	</properties>
 	<functions xmlns="https://homegear.eu/xmlNamespaces/DeviceType">
 		<function xmlns="https://homegear.eu/xmlNamespaces/FunctionGroupType" channel="0" type="MAINTENANCE">
@@ -546,6 +547,16 @@
 				<physicalBoolean>
 					<operationType>internal</operationType>
 				</physicalBoolean>
+			</parameter>
+			<parameter id="CONFIG_PENDING">
+				<properties>
+					<writeable>false</writeable>
+					<service>true</service>
+				</properties>
+				<logicalBoolean/>
+				<physicalInteger groupId="CONFIG_PENDING">
+					<operationType>internal</operationType>
+				</physicalInteger>
 			</parameter>
 			<parameter id="RSSI_DEVICE">
 				<properties>

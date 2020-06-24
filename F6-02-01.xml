@@ -9,8 +9,13 @@
 			<description>Rocker Switch, 2 Rocker; Light and Blind Control - Application Style 2</description>
 			<typeNumber>0xF60202</typeNumber>
 		</device>
+		<device id="00401000000A">
+			<description>OPUS Wall sensor</description>
+			<typeNumber>0x40F60201</typeNumber>
+		</device>
 	</supportedDevices>
 	<properties>
+		<receiveMode>none</receiveMode>
 		<pairingMethod>createDevice</pairingMethod>
 	</properties>
 	<functions xmlns="https://homegear.eu/xmlNamespaces/DeviceType">

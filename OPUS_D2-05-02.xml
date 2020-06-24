@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <homegearDevice xmlns="https://homegear.eu/xmlNamespaces/HomegearDevice" version="1">
 	<supportedDevices xmlns="https://homegear.eu/xmlNamespaces/DeviceType">
-		<device id="004000000005">
-			<description>OPUS BRiDGE 1 channel (563.01x)</description>
-			<typeNumber>0x40D20101</typeNumber>
-		</device>
-		<device id="00400000000F">
-			<description>OPUS BRiDGE 16A 1 channel (563.014)</description>
-			<typeNumber>0x40D20101</typeNumber>
+		<device id="004000000004">
+			<description>OPUS BRiDGE Blind (563.031)</description>
+			<typeNumber>0x40D20502</typeNumber>
 		</device>
 	</supportedDevices>
 	<properties>
@@ -22,7 +18,7 @@
 			<configParameters>EnOceanConfig</configParameters>
 			<variables>maint_ch_values</variables>
 		</function>
-		<function xmlns="https://homegear.eu/xmlNamespaces/FunctionGroupType" channel="1" type="EnOceanSwitch">
+		<function xmlns="https://homegear.eu/xmlNamespaces/FunctionGroupType" channel="1" type="EnOceanBlind">
 			<properties>
 				<linkReceiverFunctionTypes>
 					<type>SWITCH</type>
@@ -60,7 +56,7 @@
 				<setLinkTableHasIndex>true</setLinkTableHasIndex><!-- Some devices don't encode index - against the specification -->
 				<setInboundLinkTableSize>14</setInboundLinkTableSize>
 				<setOutboundLinkTableSize>2</setOutboundLinkTableSize>
-				<linkTableGatewayEep>D20101</linkTableGatewayEep>
+				<linkTableGatewayEep>D20502</linkTableGatewayEep>
 				<deviceConfigurationSize>17</deviceConfigurationSize>
 
 				<unlock>true</unlock><!-- 0x001 -->
@@ -104,42 +100,90 @@
 		</remoteManagementInfo>
 	</metadata>
 	<packets>
-		<packet id="STATE_INFO">
+		<packet id="POSITION_INFO">
+			<!-- D2 7F 7F 00 04 058A3F2E8001FFFFFFFF3600A5 -->
 			<direction>toCentral</direction>
 			<type>0xD2</type>
 			<channel>1</channel>
 			<binaryPayload>
 				<element>
-					<bitIndex>8</bitIndex>
-					<bitSize>8</bitSize>
-					<constValueInteger>4</constValueInteger>
+					<bitIndex>9</bitIndex>
+					<bitSize>7</bitSize>
+					<parameterId>CURRENT_POSITION</parameterId>
 				</element>
 				<element>
-					<bitIndex>19</bitIndex>
-					<bitSize>5</bitSize>
+					<bitIndex>17</bitIndex>
+					<bitSize>7</bitSize>
+					<parameterId>CURRENT_ANGLE</parameterId>
+				</element>
+				<element>
+					<bitIndex>29</bitIndex>
+					<bitSize>3</bitSize>
+					<parameterId>LOCKING_MODE</parameterId>
+				</element>
+				<element>
+					<bitIndex>32</bitIndex>
+					<bitSize>4</bitSize>
 					<constValueInteger>0</constValueInteger>
 				</element>
 				<element>
-					<bitIndex>25</bitIndex>
-					<bitSize>7</bitSize>
-					<parameterId>STATE</parameterId>
+					<bitIndex>36</bitIndex>
+					<bitSize>4</bitSize>
+					<constValueInteger>4</constValueInteger>
 				</element>
 			</binaryPayload>
 		</packet>
-		<packet id="STATE_SET">
+		<packet id="POSITION_ANGLE_SET">
+			<direction>fromCentral</direction>
+			<type>0xD2</type>
+			<subtype>1</subtype>
+			<binaryPayload>
+				<element>
+					<bitIndex>9</bitIndex>
+					<bitSize>7</bitSize>
+					<parameterId>POSITION</parameterId>
+				</element>
+				<element>
+					<bitIndex>17</bitIndex>
+					<bitSize>7</bitSize>
+					<parameterId>ANGLE</parameterId>
+				</element>
+				<element>
+					<bitIndex>25</bitIndex>
+					<bitSize>3</bitSize>
+					<parameterId>REPOSITIONING_MODE</parameterId>
+				</element>
+				<element>
+					<bitIndex>29</bitIndex>
+					<bitSize>3</bitSize>
+					<parameterId>LOCKING_MODE</parameterId>
+				</element>
+				<element>
+					<bitIndex>32</bitIndex>
+					<bitSize>4</bitSize>
+					<constValueInteger>0</constValueInteger>
+				</element>
+				<element>
+					<bitIndex>36</bitIndex>
+					<bitSize>4</bitSize>
+					<constValueInteger>1</constValueInteger>
+				</element>
+			</binaryPayload>
+		</packet>
+		<packet id="STOP_SET">
 			<direction>fromCentral</direction>
 			<type>0xD2</type>
 			<subtype>1</subtype>
 			<binaryPayload>
 				<element>
 					<bitIndex>8</bitIndex>
-					<bitSize>8</bitSize>
-					<constValueInteger>1</constValueInteger>
+					<bitSize>4</bitSize>
+					<constValueInteger>0</constValueInteger>
 				</element>
 				<element>
-					<bitIndex>24</bitIndex>
-					<bitSize>8</bitSize>
-					<parameterId>STATE</parameterId>
+					<bitIndex>12</bitIndex>
+					<bitSize>4</bitSize>
+					<constValueInteger>2</constValueInteger>
 				</element>
 			</binaryPayload>
 		</packet>
@@ -330,56 +374,36 @@
 					<operationType>config</operationType>
 				</physicalNone>
 			</parameter>
-			<parameter id="OPERATION_MODE">
-				<properties/>
-				<logicalEnumeration>
-					<defaultValue>0</defaultValue>
-					<value>
-						<id>Toggle</id>
-						<index>0</index>
-					</value>
-					<value>
-						<id>Bottom on</id>
-						<index>1</index>
-					</value>
-					<value>
-						<id>Top on</id>
-						<index>2</index>
-					</value>
-					<value>
-						<id>Timer</id>
-						<index>3</index>
-					</value>
-				</logicalEnumeration>
-				<physicalInteger>
-					<memoryIndex>0</memoryIndex>
-					<bitSize>8</bitSize>
-					<operationType>config</operationType>
-				</physicalInteger>
-			</parameter>
-			<parameter id="ON_TIME">
+			<parameter id="TRANSITION_TIME">
 				<properties>
-					<unit>s</unit>
+					<unit>ms</unit>
+					<casts>
+						<integerIntegerScale>
+							<operation>division</operation>
+							<factor>10</factor>
+							<offset>0</offset>
+						</integerIntegerScale>
+					</casts>
 				</properties>
 				<logicalInteger>
-					<defaultValue>0x012C</defaultValue>
-					<minimumValue>60</minimumValue>
-					<maximumValue>7200</maximumValue>
+					<defaultValue>0x2EE0</defaultValue>
+					<minimumValue>0</minimumValue>
+					<maximumValue>655350</maximumValue>
 				</logicalInteger>
 				<physicalInteger>
-					<memoryIndex>1</memoryIndex>
+					<memoryIndex>3</memoryIndex>
 					<bitSize>16</bitSize>
 					<operationType>config</operationType>
 				</physicalInteger>
 			</parameter>
-			<parameter id="ON_TIME_CLEANING_MODE">
+			<parameter id="MAXIMUM_HOLDING_TIME">
 				<properties>
 					<unit>s</unit>
 				</properties>
 				<logicalInteger>
-					<defaultValue>0x0E10</defaultValue>
-					<minimumValue>300</minimumValue>
-					<maximumValue>18000</maximumValue>
+					<defaultValue>0x007B</defaultValue>
+					<minimumValue>0</minimumValue>
+					<maximumValue>65535</maximumValue>
 				</logicalInteger>
 				<physicalInteger>
 					<memoryIndex>2</memoryIndex>
@@ -387,29 +411,21 @@
 					<operationType>config</operationType>
 				</physicalInteger>
 			</parameter>
-			<parameter id="OFF_WARNING_TIME">
+			<parameter id="ROTATION_TIME">
 				<properties>
 					<unit>s</unit>
+					<casts>
+						<integerIntegerScale>
+							<operation>division</operation>
+							<factor>10</factor>
+							<offset>0</offset>
+						</integerIntegerScale>
+					</casts>
 				</properties>
 				<logicalInteger>
-					<defaultValue>0x1E</defaultValue>
+					<defaultValue>0x00C8</defaultValue>
 					<minimumValue>0</minimumValue>
-					<maximumValue>45</maximumValue>
-				</logicalInteger>
-				<physicalInteger>
-					<memoryIndex>3</memoryIndex>
-					<bitSize>8</bitSize>
-					<operationType>config</operationType>
-				</physicalInteger>
-			</parameter>
-			<parameter id="OFF_WARNING_DURATION">
-				<properties>
-					<unit>ms</unit>
-				</properties>
-				<logicalInteger>
-					<defaultValue>0x01F4</defaultValue>
-					<minimumValue>200</minimumValue>
-					<maximumValue>2000</maximumValue>
+					<maximumValue>655350</maximumValue>
 				</logicalInteger>
 				<physicalInteger>
 					<memoryIndex>4</memoryIndex>
@@ -417,74 +433,6 @@
 					<operationType>config</operationType>
 				</physicalInteger>
 			</parameter>
-			<!--<parameter id="PARAMETER_5">
-				<properties/>
-				<logicalInteger>
-					<defaultValue>0x0E</defaultValue>
-				</logicalInteger>
-				<physicalInteger>
-					<memoryIndex>5</memoryIndex>
-					<bitSize>8</bitSize>
-					<operationType>config</operationType>
-				</physicalInteger>
-			</parameter>-->
-			<parameter id="BRIGHTNESS_THRESHOLD">
-				<properties/>
-				<logicalInteger>
-					<defaultValue>80</defaultValue>
-					<minimumValue>20</minimumValue>
-					<maximumValue>1500</maximumValue>
-				</logicalInteger>
-				<physicalInteger>
-					<memoryIndex>6</memoryIndex>
-					<bitSize>16</bitSize>
-					<operationType>config</operationType>
-				</physicalInteger>
-			</parameter>
-			<!--<parameter id="PARAMETER_7">
-				<properties/>
-				<logicalInteger>
-					<defaultValue>0x0000</defaultValue>
-				</logicalInteger>
-				<physicalInteger>
-					<memoryIndex>7</memoryIndex>
-					<bitSize>16</bitSize>
-					<operationType>config</operationType>
-				</physicalInteger>
-			</parameter>
-			<parameter id="PARAMETER_8">
-				<properties/>
-				<logicalInteger>
-					<defaultValue>0x0000</defaultValue>
-				</logicalInteger>
-				<physicalInteger>
-					<memoryIndex>8</memoryIndex>
-					<bitSize>16</bitSize>
-					<operationType>config</operationType>
-				</physicalInteger>
-			</parameter>
-			<parameter id="PARAMETER_9">
-				<properties/>
-				<logicalInteger>
-					<defaultValue>0x0000</defaultValue>
-				</logicalInteger>
-				<physicalInteger>
-					<memoryIndex>9</memoryIndex>
-					<bitSize>16</bitSize>
-					<operationType>config</operationType>
-				</physicalInteger>
-			</parameter>
-			<parameter id="PARAMETER_10">
-				<properties/>
-				<logicalInteger>
-					<defaultValue>0x0000</defaultValue>
-				</logicalInteger>
-				<physicalInteger>
-					<memoryIndex>10</memoryIndex>
-					<bitSize>16</bitSize>
-					<operationType>config</operationType>
-				</physicalInteger>
-			</parameter>-->
 			<parameter id="ROCKER_A">
 				<properties>
 					<casts>
@@ -498,7 +446,7 @@
 					<defaultValue>false</defaultValue>
 				</logicalBoolean>
 				<physicalInteger>
-					<memoryIndex>11</memoryIndex>
+					<memoryIndex>6</memoryIndex>
 					<bitSize>8</bitSize>
 					<operationType>config</operationType>
 				</physicalInteger>
@@ -516,22 +464,11 @@
 					<defaultValue>false</defaultValue>
 				</logicalBoolean>
 				<physicalInteger>
-					<memoryIndex>12</memoryIndex>
+					<memoryIndex>7</memoryIndex>
 					<bitSize>8</bitSize>
 					<operationType>config</operationType>
 				</physicalInteger>
 			</parameter>
-			<!--<parameter id="PARAMETER_13">
-				<properties/>
-				<logicalInteger>
-					<defaultValue>0x03</defaultValue>
-				</logicalInteger>
-				<physicalInteger>
-					<memoryIndex>13</memoryIndex>
-					<bitSize>8</bitSize>
-					<operationType>config</operationType>
-				</physicalInteger>
-			</parameter>-->
 			<parameter id="VINET">
 				<properties/>
 				<logicalEnumeration>
@@ -546,41 +483,7 @@
 					</value>
 				</logicalEnumeration>
 				<physicalInteger>
-					<memoryIndex>14</memoryIndex>
-					<bitSize>8</bitSize>
-					<operationType>config</operationType>
-				</physicalInteger>
-			</parameter>
-			<!--<parameter id="PARAMETER_15">
-				<properties/>
-				<logicalInteger>
-					<defaultValue>0x01</defaultValue>
-				</logicalInteger>
-				<physicalInteger>
-					<memoryIndex>15</memoryIndex>
-					<bitSize>8</bitSize>
-					<operationType>config</operationType>
-				</physicalInteger>
-			</parameter>-->
-			<parameter id="STATUS_LED">
-				<properties/>
-				<logicalEnumeration>
-					<defaultValue>0</defaultValue>
-					<value>
-						<id>None</id>
-						<index>0</index>
-					</value>
-					<value>
-						<id>Green</id>
-						<index>1</index>
-					</value>
-					<value>
-						<id>Red</id>
-						<index>2</index>
-					</value>
-				</logicalEnumeration>
-				<physicalInteger>
-					<memoryIndex>16</memoryIndex>
+					<memoryIndex>5</memoryIndex>
 					<bitSize>8</bitSize>
 					<operationType>config</operationType>
 				</physicalInteger>
@@ -665,31 +568,166 @@
 			</parameter>
 		</variables>
 		<variables id="EnOceanVariables1">
-			<parameter id="STATE">
+			<parameter id="POSITION">
 				<properties>
-					<readable>true</readable>
+					<readable>false</readable>
 					<writeable>true</writeable>
-					<casts>
-						<booleanInteger>
-							<trueValue>0x64</trueValue>
-							<falseValue>0</falseValue>
-							<threshold>1</threshold>
-						</booleanInteger>
-					</casts>
+					<unit>%</unit>
 				</properties>
-				<logicalBoolean>
-					<defaultValue>false</defaultValue>
-				</logicalBoolean>
-				<physicalInteger groupId="STATE">
+				<logicalInteger>
+					<defaultValue>127</defaultValue>
+					<minimumValue>0</minimumValue>
+					<maximumValue>100</maximumValue>
+					<specialValues>
+						<specialValue id="DontChange">127</specialValue>
+					</specialValues>
+				</logicalInteger>
+				<physicalInteger groupId="POSITION">
 					<operationType>command</operationType>
 				</physicalInteger>
 				<packets>
-					<packet id="STATE_INFO">
+					<packet id="POSITION_ANGLE_SET">
+						<type>set</type>
+					</packet>
+				</packets>
+			</parameter>
+			<parameter id="CURRENT_POSITION">
+				<properties>
+					<readable>true</readable>
+					<writeable>false</writeable>
+					<unit>%</unit>
+				</properties>
+				<logicalInteger>
+					<defaultValue>0</defaultValue>
+					<minimumValue>0</minimumValue>
+					<maximumValue>100</maximumValue>
+				</logicalInteger>
+				<physicalInteger groupId="CURRENT_POSITION">
+					<operationType>command</operationType>
+				</physicalInteger>
+				<packets>
+					<packet id="POSITION_INFO">
 						<type>event</type>
 					</packet>
-					<packet id="STATE_SET">
+				</packets>
+			</parameter>
+			<parameter id="ANGLE">
+				<properties>
+					<readable>false</readable>
+					<writeable>true</writeable>
+					<unit>%</unit>
+				</properties>
+				<logicalInteger>
+					<defaultValue>127</defaultValue>
+					<minimumValue>0</minimumValue>
+					<maximumValue>100</maximumValue>
+					<specialValues>
+						<specialValue id="DontChange">127</specialValue>
+					</specialValues>
+				</logicalInteger>
+				<physicalInteger groupId="ANGLE">
+					<operationType>command</operationType>
+				</physicalInteger>
+				<packets>
+					<packet id="POSITION_ANGLE_SET">
 						<type>set</type>
-						<responseId>ANY</responseId>
+					</packet>
+				</packets>
+			</parameter>
+			<parameter id="CURRENT_ANGLE">
+				<properties>
+					<readable>true</readable>
+					<writeable>false</writeable>
+					<unit>%</unit>
+				</properties>
+				<logicalInteger>
+					<defaultValue>127</defaultValue>
+					<minimumValue>0</minimumValue>
+					<maximumValue>100</maximumValue>
+					<specialValues>
+						<specialValue id="DontChange">127</specialValue>
+					</specialValues>
+				</logicalInteger>
+				<physicalInteger groupId="CURRENT_ANGLE">
+					<operationType>command</operationType>
+				</physicalInteger>
+				<packets>
+					<packet id="POSITION_INFO">
+						<type>event</type>
+					</packet>
+				</packets>
+			</parameter>
+			<parameter id="STOP">
+				<properties>
+					<readable>false</readable>
+					<writeable>true</writeable>
+				</properties>
+				<logicalAction/>
+				<physicalInteger groupId="STOP">
+					<operationType>command</operationType>
+				</physicalInteger>
+				<packets>
+					<packet id="STOP_SET">
+						<type>set</type>
+					</packet>
+				</packets>
+			</parameter>
+			<parameter id="REPOSITIONING_MODE">
+				<properties/>
+				<logicalEnumeration>
+					<defaultValue>0</defaultValue>
+					<value>
+						<id>Go to position/angle</id>
+						<index>0</index>
+					</value>
+					<value>
+						<id>Go up, then to position/angle</id>
+						<index>1</index>
+					</value>
+					<value>
+						<id>Go down, then to position/angle</id>
+						<index>2</index>
+					</value>
+				</logicalEnumeration>
+				<physicalInteger groupId="REPOSITIONING_MODE">
+					<operationType>command</operationType>
+				</physicalInteger>
+				<packets>
+					<packet id="POSITION_ANGLE_SET">
+						<type>set</type>
+					</packet>
+				</packets>
+			</parameter>
+			<parameter id="LOCKING_MODE">
+				<properties/>
+				<logicalEnumeration>
+					<defaultValue>0</defaultValue>
+					<value>
+						<id>Do not change</id>
+						<index>0</index>
+					</value>
+					<value>
+						<id>Set blockage mode</id>
+						<index>1</index>
+					</value>
+					<value>
+						<id>Set alarm mode</id>
+						<index>2</index>
+					</value>
+					<value>
+						<id>Deblockage</id>
+						<index>7</index>
+					</value>
+				</logicalEnumeration>
+				<physicalInteger groupId="LOCKING_MODE">
+					<operationType>command</operationType>
+				</physicalInteger>
+				<packets>
+					<packet id="POSITION_INFO">
+						<type>event</type>
+					</packet>
+					<packet id="POSITION_ANGLE_SET">
+						<type>set</type>
 					</packet>
 				</packets>
 			</parameter>
