@@ -601,6 +601,9 @@
 					<defaultValue>0</defaultValue>
 					<minimumValue>0</minimumValue>
 					<maximumValue>100</maximumValue>
+					<specialValues>
+						<specialValue id="Unknown">127</specialValue>
+					</specialValues>
 				</logicalInteger>
 				<physicalInteger groupId="CURRENT_POSITION">
 					<operationType>command</operationType>
@@ -645,7 +648,7 @@
 					<minimumValue>0</minimumValue>
 					<maximumValue>100</maximumValue>
 					<specialValues>
-						<specialValue id="DontChange">127</specialValue>
+						<specialValue id="Unknown">127</specialValue>
 					</specialValues>
 				</logicalInteger>
 				<physicalInteger groupId="CURRENT_ANGLE">
@@ -656,6 +659,22 @@
 						<type>event</type>
 					</packet>
 				</packets>
+			</parameter>
+			<parameter id="CURRENT_SPEED">
+				<properties>
+					<readable>true</readable>
+					<writeable>false</writeable>
+					<unit>%/s</unit>
+					<casts>
+						<rpcBinary/>
+					</casts>
+				</properties>
+				<logicalDecimal>
+					<defaultValue>0</defaultValue>
+				</logicalDecimal>
+				<physicalNone>
+					<operationType>store</operationType>
+				</physicalNone>
 			</parameter>
 			<parameter id="STOP">
 				<properties>
