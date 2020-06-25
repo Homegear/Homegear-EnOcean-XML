@@ -9,7 +9,7 @@
 			<description>Rocker Switch, 2 Rocker; Light and Blind Control - Application Style 2</description>
 			<typeNumber>0xF60202</typeNumber>
 		</device>
-		<device id="00401000000A">
+		<device id="OPUS Wall sensor" productId="00401000000A">
 			<description>OPUS Wall sensor</description>
 			<typeNumber>0x40F60201</typeNumber>
 		</device>
