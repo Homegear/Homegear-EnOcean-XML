@@ -111,6 +111,17 @@
 				</element>
 			</binaryPayload>
 		</packet>
+		<packet id="STOP">
+			<direction>fromCentral</direction>
+			<type>0xF6</type>
+			<binaryPayload>
+				<element>
+					<bitIndex>8</bitIndex>
+					<bitSize>8</bitSize>
+					<constValueInteger>0</constValueInteger>
+				</element>
+			</binaryPayload>
+		</packet>
 	</packets>
 	<parameterGroups xmlns="https://homegear.eu/xmlNamespaces/DeviceType">
 		<configParameters id="EnOceanConfig">
@@ -339,6 +350,22 @@
 						<responseId>ANY</responseId>
 						<conditionOperator>e</conditionOperator>
 						<conditionValue>0</conditionValue>
+					</packet>
+				</packets>
+			</parameter>
+			<parameter id="STOP">
+				<properties>
+					<readable>false</readable>
+					<writeable>true</writeable>
+				</properties>
+				<logicalBoolean/>
+				<physicalInteger groupId="STOP">
+					<operationType>command</operationType>
+				</physicalInteger>
+				<packets>
+					<packet id="STOP">
+						<type>set</type>
+						<responseId>ANY</responseId>
 					</packet>
 				</packets>
 			</parameter>
