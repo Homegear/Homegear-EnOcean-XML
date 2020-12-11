@@ -5,10 +5,6 @@
 			<description>Total Volatile Air Compounds sensor</description>
 			<typeNumber>0xA5090C</typeNumber>
 		</device>
-		<device id="0D-A5-09-0C">
-			<description>Total Volatile Air Compounds sensor</description>
-			<typeNumber>0xDA5090C</typeNumber>
-		</device>
 	</supportedDevices>
 	<properties>
 		<timeout>86400</timeout>

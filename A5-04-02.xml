@@ -5,10 +5,6 @@
 			<description>Temperature and Humidity Sensor -20°C to 60°C</description>
 			<typeNumber>0xA50402</typeNumber>
 		</device>
-		<device id="0D-A5-04-02">
-			<description>Temperature and Humidity Sensor -20°C to 60°C</description>
-			<typeNumber>0xDA50402</typeNumber>
-		</device>
 	</supportedDevices>
 	<properties>
 		<timeout>86400</timeout>
