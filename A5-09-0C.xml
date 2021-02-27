@@ -18,7 +18,7 @@
 			<configParameters>EnOceanConfig</configParameters>
 			<variables>maint_ch_values</variables>
 		</function>
-		<function xmlns="https://homegear.eu/xmlNamespaces/FunctionGroupType" channel="1" type="EnOceanTemperatureHumidity">
+		<function xmlns="https://homegear.eu/xmlNamespaces/FunctionGroupType" channel="1" type="EnOceanTVOC">
 			<variables>EnOceanVariables</variables>
 		</function>
 	</functions>
