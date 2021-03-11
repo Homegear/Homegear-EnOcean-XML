@@ -25,49 +25,49 @@
 	<metadata>
 		<remoteManagementInfo>
 			<features>
-				<sendsAck>false</sendsAck><!-- We need to call queryStatus, there are no ACKs -->
-				<setLinkTableHasIndex>false</setLinkTableHasIndex><!-- Some devices don't encode index - against the specification -->
-				<setInboundLinkTableSize>1</setInboundLinkTableSize>
-				<setOutboundLinkTableSize>0</setOutboundLinkTableSize>
-				<linkTableGatewayEep>A53808</linkTableGatewayEep>
+                <sendsAck>true</sendsAck><!-- We need to call queryStatus, there are no ACKs -->
+                <setLinkTableHasIndex>true</setLinkTableHasIndex><!-- Some devices don't encode index - against the specification -->
+                <setInboundLinkTableSize>30</setInboundLinkTableSize>
+                <setOutboundLinkTableSize>0</setOutboundLinkTableSize>
+                <linkTableGatewayEep>A53808</linkTableGatewayEep>
 
-				<unlock>false</unlock><!-- 0x001 -->
-				<lock>false</lock><!-- 0x002 -->
-				<setCode>false</setCode><!-- 0x003 -->
-				<queryId>false</queryId><!-- 0x004 -->
-				<action>false</action><!-- 0x005 -->
-				<ping>false</ping><!-- 0x006 -->
-				<queryFunction>false</queryFunction><!-- 0x007 -->
-				<queryStatus>true</queryStatus><!-- 0x008 -->
-				<startSession>false</startSession><!-- 0x009 -->
-				<closeSession>false</closeSession><!-- 0x00A -->
-				<rpcRemoteLearn>false</rpcRemoteLearn><!-- 0x201 -->
-				<rpcRemoteFlashWrite>false</rpcRemoteFlashWrite><!-- 0x203 -->
-				<rpcRemoteFlashRead>false</rpcRemoteFlashRead><!-- 0x204 -->
-				<rpcSmartAckRead>false</rpcSmartAckRead><!-- 0x205 -->
-				<rpcSmartAckWrite>false</rpcSmartAckWrite><!-- 0x206 -->
-				<getLinkTableMetadata>false</getLinkTableMetadata><!-- 0x210 -->
-				<getLinkTable>false</getLinkTable><!-- 0x211 -->
-				<setLinkTable>true</setLinkTable><!-- 0x212 -->
-				<getLinkTableGpEntry>false</getLinkTableGpEntry><!-- 0x213 -->
-				<setLinkTableGpEntry>false</setLinkTableGpEntry><!-- 0x214 -->
-				<getSecurityProfile>false</getSecurityProfile><!-- 0x215 -->
-				<setSecurityProfile>false</setSecurityProfile><!-- 0x216 -->
-				<remoteSetLearnMode>false</remoteSetLearnMode><!-- 0x220 -->
-				<triggerOutboundRemoteTeachRequest>false</triggerOutboundRemoteTeachRequest><!-- 0x221 -->
-				<resetToDefaults>false</resetToDefaults><!-- 0x224 -->
-				<radioLinkTestControl>false</radioLinkTestControl><!-- 0x225 -->
-				<applyChanges>false</applyChanges><!-- 0x226 -->
-				<getProductId>false</getProductId><!-- 0x227 -->
-				<getDeviceConfiguration>false</getDeviceConfiguration><!-- 0x230 -->
-				<setDeviceConfiguration>false</setDeviceConfiguration><!-- 0x231 -->
-				<getLinkBasedConfiguration>false</getLinkBasedConfiguration><!-- 0x232 -->
-				<setLinkBasedConfiguration>false</setLinkBasedConfiguration><!-- 0x233 -->
-				<getDeviceSecurityInfo>false</getDeviceSecurityInfo><!-- 0x234 -->
-				<setDeviceSecurityInfo>false</setDeviceSecurityInfo><!-- 0x235 -->
-				<getRepeaterFunctions>false</getRepeaterFunctions><!-- 0x250 -->
-				<setRepeaterFunctions>false</setRepeaterFunctions><!-- 0x251 -->
-				<setRepeaterFilter>false</setRepeaterFilter><!-- 0x252 -->
+                <unlock>true</unlock><!-- 0x001 -->
+                <lock>true</lock><!-- 0x002 -->
+                <setCode>false</setCode><!-- 0x003 -->
+                <queryId>false</queryId><!-- 0x004 -->
+                <action>false</action><!-- 0x005 -->
+                <ping>false</ping><!-- 0x006 -->
+                <queryFunction>false</queryFunction><!-- 0x007 -->
+                <queryStatus>true</queryStatus><!-- 0x008 -->
+                <startSession>false</startSession><!-- 0x009 -->
+                <closeSession>false</closeSession><!-- 0x00A -->
+                <rpcRemoteLearn>false</rpcRemoteLearn><!-- 0x201 -->
+                <rpcRemoteFlashWrite>false</rpcRemoteFlashWrite><!-- 0x203 -->
+                <rpcRemoteFlashRead>false</rpcRemoteFlashRead><!-- 0x204 -->
+                <rpcSmartAckRead>false</rpcSmartAckRead><!-- 0x205 -->
+                <rpcSmartAckWrite>false</rpcSmartAckWrite><!-- 0x206 -->
+                <getLinkTableMetadata>true</getLinkTableMetadata><!-- 0x210 -->
+                <getLinkTable>true</getLinkTable><!-- 0x211 -->
+                <setLinkTable>true</setLinkTable><!-- 0x212 -->
+                <getLinkTableGpEntry>false</getLinkTableGpEntry><!-- 0x213 -->
+                <setLinkTableGpEntry>false</setLinkTableGpEntry><!-- 0x214 -->
+                <getSecurityProfile>false</getSecurityProfile><!-- 0x215 -->
+                <setSecurityProfile>true</setSecurityProfile><!-- 0x216 -->
+                <remoteSetLearnMode>false</remoteSetLearnMode><!-- 0x220 -->
+                <triggerOutboundRemoteTeachRequest>false</triggerOutboundRemoteTeachRequest><!-- 0x221 -->
+                <resetToDefaults>false</resetToDefaults><!-- 0x224 -->
+                <radioLinkTestControl>false</radioLinkTestControl><!-- 0x225 -->
+                <applyChanges>true</applyChanges><!-- 0x226 -->
+                <getProductId>true</getProductId><!-- 0x227 -->
+                <getDeviceConfiguration>false</getDeviceConfiguration><!-- 0x230 -->
+                <setDeviceConfiguration>false</setDeviceConfiguration><!-- 0x231 -->
+                <getLinkBasedConfiguration>false</getLinkBasedConfiguration><!-- 0x232 -->
+                <setLinkBasedConfiguration>false</setLinkBasedConfiguration><!-- 0x233 -->
+                <getDeviceSecurityInfo>false</getDeviceSecurityInfo><!-- 0x234 -->
+                <setDeviceSecurityInfo>false</setDeviceSecurityInfo><!-- 0x235 -->
+                <getRepeaterFunctions>true</getRepeaterFunctions><!-- 0x250 -->
+                <setRepeaterFunctions>true</setRepeaterFunctions><!-- 0x251 -->
+                <setRepeaterFilter>true</setRepeaterFilter><!-- 0x252 -->
 			</features>
 		</remoteManagementInfo>
 	</metadata>
