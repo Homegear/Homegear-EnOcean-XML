@@ -1,42 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <homegearDevice xmlns="https://homegear.eu/xmlNamespaces/HomegearDevice" version="1">
-	<supportedDevices xmlns="https://homegear.eu/xmlNamespaces/DeviceType">
-		<device id="HG-16A-EO">
-			<description>HG-16A-EO</description>
-			<typeNumber>0x33D20109</typeNumber>
-		</device>
-	</supportedDevices>
-	<properties>
-		<receiveMode>always</receiveMode>
-		<pairingMethod>setInstallMode+[remoteCommissioning]</pairingMethod>
-	</properties>
-	<functions xmlns="https://homegear.eu/xmlNamespaces/DeviceType">
-		<function xmlns="https://homegear.eu/xmlNamespaces/FunctionGroupType" channel="0" type="MAINTENANCE">
-			<properties>
-				<internal>true</internal>
-			</properties>
-			<configParameters>EnOceanConfig</configParameters>
-			<variables>maint_ch_values</variables>
-		</function>
-		<function xmlns="https://homegear.eu/xmlNamespaces/FunctionGroupType" channel="1" type="EnOceanSwitch">
-			<variables>EnOceanVariables</variables>
-		</function>
-	</functions>
-	<metadata>
-		<remoteManagementInfo>
-			<features>
-                <sendsAck>true</sendsAck><!-- We need to call queryStatus, there are no ACKs -->
-                <setLinkTableHasIndex>true</setLinkTableHasIndex><!-- Some devices don't encode index - against the specification -->
-                <setInboundLinkTableSize>30</setInboundLinkTableSize>
-                <setOutboundLinkTableSize>0</setOutboundLinkTableSize>
+    <supportedDevices xmlns="https://homegear.eu/xmlNamespaces/DeviceType">
+        <device id="HG-16A-EO">
+            <description>HG-16A-EO</description>
+            <typeNumber>0x33D20109</typeNumber>
+        </device>
+    </supportedDevices>
+    <properties>
+        <receiveMode>always</receiveMode>
+        <pairingMethod>setInstallMode+[remoteCommissioning]</pairingMethod>
+    </properties>
+    <functions xmlns="https://homegear.eu/xmlNamespaces/DeviceType">
+        <function xmlns="https://homegear.eu/xmlNamespaces/FunctionGroupType" channel="0" type="MAINTENANCE">
+            <properties>
+                <internal>true</internal>
+            </properties>
+            <configParameters>EnOceanConfig</configParameters>
+            <variables>maint_ch_values</variables>
+        </function>
+        <function xmlns="https://homegear.eu/xmlNamespaces/FunctionGroupType" channel="1" type="EnOceanSwitch">
+            <variables>EnOceanVariables</variables>
+        </function>
+    </functions>
+    <metadata>
+        <remoteManagementInfo>
+            <features>
+                <maxDataLength>22</maxDataLength><!-- Maximum length of data part in bytes -->
+
+                <inboundLinkTableSize>30</inboundLinkTableSize>
+                <outboundLinkTableSize>0</outboundLinkTableSize>
                 <linkTableGatewayEep>A53808</linkTableGatewayEep>
+                <deviceConfigurationSize>4</deviceConfigurationSize>
 
                 <unlock>true</unlock><!-- 0x001 -->
                 <lock>true</lock><!-- 0x002 -->
                 <setCode>false</setCode><!-- 0x003 -->
                 <queryId>false</queryId><!-- 0x004 -->
                 <action>false</action><!-- 0x005 -->
-                <ping>false</ping><!-- 0x006 -->
+                <ping>true</ping><!-- 0x006 -->
                 <queryFunction>false</queryFunction><!-- 0x007 -->
                 <queryStatus>true</queryStatus><!-- 0x008 -->
                 <startSession>false</startSession><!-- 0x009 -->
@@ -60,18 +61,18 @@
                 <applyChanges>true</applyChanges><!-- 0x226 -->
                 <getProductId>true</getProductId><!-- 0x227 -->
                 <getDeviceConfiguration>false</getDeviceConfiguration><!-- 0x230 -->
-                <setDeviceConfiguration>false</setDeviceConfiguration><!-- 0x231 -->
+                <setDeviceConfiguration>true</setDeviceConfiguration><!-- 0x231 -->
                 <getLinkBasedConfiguration>false</getLinkBasedConfiguration><!-- 0x232 -->
                 <setLinkBasedConfiguration>false</setLinkBasedConfiguration><!-- 0x233 -->
                 <getDeviceSecurityInfo>false</getDeviceSecurityInfo><!-- 0x234 -->
                 <setDeviceSecurityInfo>false</setDeviceSecurityInfo><!-- 0x235 -->
-                <getRepeaterFunctions>true</getRepeaterFunctions><!-- 0x250 -->
+                <getRepeaterFunctions>false</getRepeaterFunctions><!-- 0x250 -->
                 <setRepeaterFunctions>true</setRepeaterFunctions><!-- 0x251 -->
                 <setRepeaterFilter>true</setRepeaterFilter><!-- 0x252 -->
-			</features>
-		</remoteManagementInfo>
-	</metadata>
- 	<packets>
+            </features>
+        </remoteManagementInfo>
+    </metadata>
+    <packets>
         <packet id="STATE_INFO">
             <direction>toCentral</direction>
             <type>0xD2</type>
@@ -312,7 +313,7 @@
                 <element>
                     <bitIndex>8</bitIndex>
                     <bitSize>8</bitSize>
-                    <constValueInteger>0x82</constValueInteger>             
+                    <constValueInteger>0x82</constValueInteger>
                 </element>
                 <element>
                     <bitIndex>18</bitIndex>
@@ -360,7 +361,7 @@
                     <bitIndex>48</bitIndex>
                     <bitSize>8</bitSize>
                     <constValueInteger>10</constValueInteger>
-                </element>              
+                </element>
             </binaryPayload>
         </packet>
         <packet id="MEASUREMENT_RESET">
@@ -407,7 +408,7 @@
                     <bitIndex>48</bitIndex>
                     <bitSize>8</bitSize>
                     <constValueInteger>10</constValueInteger>
-                </element>              
+                </element>
             </binaryPayload>
         </packet>
         <packet id="MEASUREMENT_ENERGY_GET">
@@ -489,6 +490,36 @@
     </packets>
     <parameterGroups xmlns="https://homegear.eu/xmlNamespaces/DeviceType">
         <configParameters id="EnOceanConfig">
+            <parameter id="SECURITY_CODE">
+                <properties>
+                    <readable>true</readable>
+                    <writeable>true</writeable>
+                    <password>true</password>
+                    <casts>
+                        <rpcBinary/>
+                    </casts>
+                </properties>
+                <logicalString>
+                    <defaultValue>00000000</defaultValue>
+                </logicalString>
+                <physicalNone>
+                    <operationType>config</operationType>
+                </physicalNone>
+            </parameter>
+            <parameter id="PING_INTERVAL">
+                <properties>
+                    <readable>true</readable>
+                    <writeable>true</writeable>
+                </properties>
+                <logicalInteger>
+                    <minimumValue>0</minimumValue>
+                    <maximumValue>86400</maximumValue>
+                    <defaultValue>180</defaultValue>
+                </logicalInteger>
+                <physicalNone>
+                    <operationType>config</operationType>
+                </physicalNone>
+            </parameter>
             <parameter id="RESEND_TIMEOUT">
                 <properties>
                     <readable>true</readable>
@@ -497,7 +528,7 @@
                 <logicalInteger>
                     <minimumValue>0</minimumValue>
                     <maximumValue>10000</maximumValue>
-                    <defaultValue>1000</defaultValue>
+                    <defaultValue>200</defaultValue>
                 </logicalInteger>
                 <physicalNone>
                     <operationType>config</operationType>
@@ -511,11 +542,55 @@
                 <logicalInteger>
                     <minimumValue>0</minimumValue>
                     <maximumValue>20</maximumValue>
-                    <defaultValue>0</defaultValue>
+                    <defaultValue>10</defaultValue>
                 </logicalInteger>
                 <physicalNone>
                     <operationType>config</operationType>
                 </physicalNone>
+            </parameter>
+            <parameter id="BUTTON_TYPE">
+                <logicalEnumeration>
+                    <defaultValue>0</defaultValue>
+                    <value>
+                        <id>Push button</id>
+                        <index>0</index>
+                    </value>
+                    <value>
+                        <id>Rocker</id>
+                        <index>1</index>
+                    </value>
+                    <value>
+                        <id>Momentary button</id>
+                        <index>2</index>
+                    </value>
+                </logicalEnumeration>
+                <physicalInteger>
+                    <memoryIndex>0</memoryIndex>
+                    <bitSize>8</bitSize>
+                    <operationType>config</operationType>
+                </physicalInteger>
+            </parameter>
+            <parameter id="LOCAL_CONTROL">
+                <logicalEnumeration>
+                    <defaultValue>0</defaultValue>
+                    <value>
+                        <id>On</id>
+                        <index>0</index>
+                    </value>
+                    <value>
+                        <id>Off</id>
+                        <index>1</index>
+                    </value>
+                    <value>
+                        <id>Ping-triggered off</id>
+                        <index>2</index>
+                    </value>
+                </logicalEnumeration>
+                <physicalInteger>
+                    <memoryIndex>2</memoryIndex>
+                    <bitSize>8</bitSize>
+                    <operationType>config</operationType>
+                </physicalInteger>
             </parameter>
         </configParameters>
         <variables id="maint_ch_values">
@@ -525,7 +600,7 @@
                     <writeable>false</writeable>
                     <service>true</service>
                 </properties>
-                <logicalBoolean />
+                <logicalBoolean/>
                 <physicalBoolean>
                     <operationType>internal</operationType>
                 </physicalBoolean>
@@ -537,7 +612,7 @@
                     <service>true</service>
                     <sticky>true</sticky>
                 </properties>
-                <logicalBoolean />
+                <logicalBoolean/>
                 <physicalBoolean>
                     <operationType>internal</operationType>
                 </physicalBoolean>

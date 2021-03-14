@@ -52,10 +52,8 @@
 	<metadata>
 		<remoteManagementInfo>
 			<features>
-				<sendsAck>true</sendsAck><!-- We need to call queryStatus, there are no ACKs -->
-				<setLinkTableHasIndex>true</setLinkTableHasIndex><!-- Some devices don't encode index - against the specification -->
-				<setInboundLinkTableSize>14</setInboundLinkTableSize>
-				<setOutboundLinkTableSize>2</setOutboundLinkTableSize>
+				<inboundLinkTableSize>14</inboundLinkTableSize>
+				<outboundLinkTableSize>2</outboundLinkTableSize>
 				<linkTableGatewayEep>D20502</linkTableGatewayEep>
 				<deviceConfigurationSize>17</deviceConfigurationSize>
 
