@@ -27,6 +27,9 @@
             <features>
                 <maxDataLength>22</maxDataLength><!-- Maximum length of data part in bytes -->
 
+                <forceEncryption>true</forceEncryption>
+                <slf>0xF3</slf>
+
                 <inboundLinkTableSize>30</inboundLinkTableSize>
                 <outboundLinkTableSize>0</outboundLinkTableSize>
                 <linkTableGatewayEep>A53808</linkTableGatewayEep>
@@ -506,6 +509,38 @@
                     <operationType>config</operationType>
                 </physicalNone>
             </parameter>
+            <parameter id="AES_KEY_INBOUND">
+                <properties>
+                    <readable>true</readable>
+                    <writeable>true</writeable>
+                    <password>true</password>
+                    <casts>
+                        <rpcBinary/>
+                    </casts>
+                </properties>
+                <logicalString>
+                    <defaultValue>00000000000000000000000000000000</defaultValue>
+                </logicalString>
+                <physicalNone>
+                    <operationType>config</operationType>
+                </physicalNone>
+            </parameter>
+            <parameter id="AES_KEY_OUTBOUND">
+                <properties>
+                    <readable>true</readable>
+                    <writeable>true</writeable>
+                    <password>true</password>
+                    <casts>
+                        <rpcBinary/>
+                    </casts>
+                </properties>
+                <logicalString>
+                    <defaultValue>00000000000000000000000000000000</defaultValue>
+                </logicalString>
+                <physicalNone>
+                    <operationType>config</operationType>
+                </physicalNone>
+            </parameter>
             <parameter id="PING_INTERVAL">
                 <properties>
                     <readable>true</readable>
@@ -591,6 +626,27 @@
                     <bitSize>8</bitSize>
                     <operationType>config</operationType>
                 </physicalInteger>
+            </parameter>
+            <parameter id="REPEATER_LEVEL">
+                <properties/>
+                <logicalEnumeration>
+                    <defaultValue>0</defaultValue>
+                    <value>
+                        <id>Off</id>
+                        <index>0</index>
+                    </value>
+                    <value>
+                        <id>Level 1</id>
+                        <index>1</index>
+                    </value>
+                    <value>
+                        <id>Level 2</id>
+                        <index>2</index>
+                    </value>
+                </logicalEnumeration>
+                <physicalNone>
+                    <operationType>config</operationType>
+                </physicalNone>
             </parameter>
         </configParameters>
         <variables id="maint_ch_values">
