@@ -28,9 +28,10 @@
                 <maxDataLength>22</maxDataLength><!-- Maximum length of data part in bytes -->
 
                 <forceEncryption>true</forceEncryption>
-                <slf>0xF3</slf>
+                <slf>243</slf>
 
-                <inboundLinkTableSize>30</inboundLinkTableSize>
+                <!-- Size is actually 30, but this reduces pairing time -->
+                <inboundLinkTableSize>2</inboundLinkTableSize>
                 <outboundLinkTableSize>0</outboundLinkTableSize>
                 <linkTableGatewayEep>A53808</linkTableGatewayEep>
                 <deviceConfigurationSize>4</deviceConfigurationSize>
@@ -504,38 +505,6 @@
                 </properties>
                 <logicalString>
                     <defaultValue>00000000</defaultValue>
-                </logicalString>
-                <physicalNone>
-                    <operationType>config</operationType>
-                </physicalNone>
-            </parameter>
-            <parameter id="AES_KEY_INBOUND">
-                <properties>
-                    <readable>true</readable>
-                    <writeable>true</writeable>
-                    <password>true</password>
-                    <casts>
-                        <rpcBinary/>
-                    </casts>
-                </properties>
-                <logicalString>
-                    <defaultValue>00000000000000000000000000000000</defaultValue>
-                </logicalString>
-                <physicalNone>
-                    <operationType>config</operationType>
-                </physicalNone>
-            </parameter>
-            <parameter id="AES_KEY_OUTBOUND">
-                <properties>
-                    <readable>true</readable>
-                    <writeable>true</writeable>
-                    <password>true</password>
-                    <casts>
-                        <rpcBinary/>
-                    </casts>
-                </properties>
-                <logicalString>
-                    <defaultValue>00000000000000000000000000000000</defaultValue>
                 </logicalString>
                 <physicalNone>
                     <operationType>config</operationType>
