@@ -33,6 +33,7 @@
                 <addressedRemanPackets>false</addressedRemanPackets>
 
                 <forceEncryption>true</forceEncryption>
+                <unencryptedUpdates>true</unencryptedUpdates>
                 <slf>243</slf>
 
                 <recomVersion>v1.1</recomVersion>
