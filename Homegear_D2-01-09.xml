@@ -27,7 +27,7 @@
             <features>
                 <maxDataLength>22</maxDataLength><!-- Maximum length of data part in bytes -->
 
-                <directedPackets>true</directedPackets>
+                <addressedRemanPackets>false</addressedRemanPackets>
 
                 <forceEncryption>true</forceEncryption>
                 <slf>243</slf>
@@ -283,19 +283,6 @@
                 </properties>
                 <logicalInteger/>
                 <physicalInteger groupId="RSSI_DEVICE">
-                    <operationType>internal</operationType>
-                </physicalInteger>
-            </parameter>
-            <parameter id="RF_CHANNEL">
-                <properties>
-                    <writeable>false</writeable>
-                </properties>
-                <logicalInteger>
-                    <minimumValue>-1</minimumValue>
-                    <maximumValue>127</maximumValue>
-                    <defaultValue>-1</defaultValue>
-                </logicalInteger>
-                <physicalInteger groupId="RF_CHANNEL">
                     <operationType>internal</operationType>
                 </physicalInteger>
             </parameter>
