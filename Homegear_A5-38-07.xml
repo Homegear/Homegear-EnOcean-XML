@@ -27,10 +27,13 @@
             <features>
                 <maxDataLength>22</maxDataLength><!-- Maximum length of data part in bytes -->
 
-                <directedPackets>true</directedPackets>
+                <addressedRemanPackets>true</addressedRemanPackets>
 
-                <forceEncryption>false</forceEncryption>
+                <forceEncryption>true</forceEncryption>
+                <unencryptedUpdates>true</unencryptedUpdates>
                 <slf>243</slf>
+
+                <recomVersion>v1.1</recomVersion>
 
                 <!-- Size is actually 30, but this reduces pairing time -->
                 <inboundLinkTableSize>2</inboundLinkTableSize>

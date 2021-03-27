@@ -30,7 +30,7 @@
             <features>
                 <maxDataLength>22</maxDataLength><!-- Maximum length of data part in bytes -->
 
-                <addressedRemanPackets>false</addressedRemanPackets>
+                <addressedRemanPackets>true</addressedRemanPackets>
 
                 <forceEncryption>true</forceEncryption>
                 <unencryptedUpdates>true</unencryptedUpdates>
