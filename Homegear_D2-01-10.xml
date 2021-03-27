@@ -304,7 +304,7 @@
                 <logicalInteger>
                     <minimumValue>0</minimumValue>
                     <maximumValue>10000</maximumValue>
-                    <defaultValue>200</defaultValue>
+                    <defaultValue>400</defaultValue>
                 </logicalInteger>
                 <physicalNone>
                     <operationType>config</operationType>
@@ -318,7 +318,7 @@
                 <logicalInteger>
                     <minimumValue>0</minimumValue>
                     <maximumValue>20</maximumValue>
-                    <defaultValue>10</defaultValue>
+                    <defaultValue>20</defaultValue>
                 </logicalInteger>
                 <physicalNone>
                     <operationType>config</operationType>

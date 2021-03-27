@@ -104,6 +104,18 @@
                 </element>
             </binaryPayload>
         </packet>
+        <packet id="LOCAL_CONTROL_INFO">
+            <direction>toCentral</direction>
+            <type>0xF6</type>
+            <channel>1</channel>
+            <binaryPayload>
+                <element>
+                    <bitIndex>11</bitIndex>
+                    <bitSize>1</bitSize>
+                    <parameterId>LOCAL_CONTROL</parameterId>
+                </element>
+            </binaryPayload>
+        </packet>
         <packet id="STATE_SET">
             <direction>fromCentral</direction>
             <type>0xD2</type>
@@ -314,6 +326,23 @@
                     <packet id="STATE_SET">
                         <type>set</type>
                         <responseId>ANY</responseId>
+                    </packet>
+                </packets>
+            </parameter>
+            <parameter id="LOCAL_CONTROL">
+                <properties>
+                    <readable>true</readable>
+                    <writeable>false</writeable>
+                </properties>
+                <logicalBoolean>
+                    <defaultValue>false</defaultValue>
+                </logicalBoolean>
+                <physicalInteger groupId="LOCAL_CONTROL">
+                    <operationType>command</operationType>
+                </physicalInteger>
+                <packets>
+                    <packet id="LOCAL_CONTROL_INFO">
+                        <type>event</type>
                     </packet>
                 </packets>
             </parameter>

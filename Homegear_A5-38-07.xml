@@ -27,13 +27,10 @@
             <features>
                 <maxDataLength>22</maxDataLength><!-- Maximum length of data part in bytes -->
 
-                <addressedRemanPackets>false</addressedRemanPackets>
+                <directedPackets>true</directedPackets>
 
-                <forceEncryption>true</forceEncryption>
-                <unencryptedUpdates>true</unencryptedUpdates>
+                <forceEncryption>false</forceEncryption>
                 <slf>243</slf>
-
-                <recomVersion>v1.1</recomVersion>
 
                 <!-- Size is actually 30, but this reduces pairing time -->
                 <inboundLinkTableSize>2</inboundLinkTableSize>
@@ -163,6 +160,33 @@
                 </element>
             </binaryPayload>
         </packet>
+        <packet id="STOP">
+            <direction>fromCentral</direction>
+            <type>0xA5</type>
+            <subtype>1</subtype>
+            <binaryPayload>
+                <element>
+                    <bitIndex>8</bitIndex>
+                    <bitSize>8</bitSize>
+                    <constValueInteger>7</constValueInteger>
+                </element>
+                <element>
+                    <bitIndex>16</bitIndex>
+                    <bitSize>8</bitSize>
+                    <constValueInteger>0</constValueInteger>
+                </element>
+                <element>
+                    <bitIndex>24</bitIndex>
+                    <bitSize>8</bitSize>
+                    <constValueInteger>0</constValueInteger>
+                </element>
+                <element>
+                    <bitIndex>32</bitIndex>
+                    <bitSize>8</bitSize>
+                    <constValueInteger>0x18</constValueInteger>
+                </element>
+            </binaryPayload>
+        </packet>
         <packet id="CLOSE">
             <direction>fromCentral</direction>
             <type>0xA5</type>
@@ -215,7 +239,7 @@
                 <logicalInteger>
                     <minimumValue>0</minimumValue>
                     <maximumValue>10000</maximumValue>
-                    <defaultValue>400</defaultValue>
+                    <defaultValue>200</defaultValue>
                 </logicalInteger>
                 <physicalNone>
                     <operationType>config</operationType>
@@ -229,7 +253,7 @@
                 <logicalInteger>
                     <minimumValue>0</minimumValue>
                     <maximumValue>20</maximumValue>
-                    <defaultValue>10</defaultValue>
+                    <defaultValue>20</defaultValue>
                 </logicalInteger>
                 <physicalNone>
                     <operationType>config</operationType>
@@ -266,6 +290,19 @@
                 </properties>
                 <logicalInteger/>
                 <physicalInteger groupId="RSSI_DEVICE">
+                    <operationType>internal</operationType>
+                </physicalInteger>
+            </parameter>
+            <parameter id="RF_CHANNEL">
+                <properties>
+                    <writeable>false</writeable>
+                </properties>
+                <logicalInteger>
+                    <minimumValue>-1</minimumValue>
+                    <maximumValue>127</maximumValue>
+                    <defaultValue>-1</defaultValue>
+                </logicalInteger>
+                <physicalInteger groupId="RF_CHANNEL">
                     <operationType>internal</operationType>
                 </physicalInteger>
             </parameter>
@@ -310,7 +347,7 @@
                         <index>1</index>
                     </value>
                     <value>
-                        <id>Open</id>
+                        <id>Opened</id>
                         <index>2</index>
                     </value>
                     <value>
@@ -343,11 +380,11 @@
                         <index>1</index>
                     </value>
                     <value>
-                        <id>Moving</id>
+                        <id>Moving up</id>
                         <index>2</index>
                     </value>
                     <value>
-                        <id>Unknown</id>
+                        <id>Moving down</id>
                         <index>3</index>
                     </value>
                 </logicalEnumeration>
@@ -371,6 +408,22 @@
                 </physicalInteger>
                 <packets>
                     <packet id="OPEN">
+                        <type>set</type>
+                        <responseId>LEVEL_INFO</responseId>
+                    </packet>
+                </packets>
+            </parameter>
+            <parameter id="STOP">
+                <properties>
+                    <readable>true</readable>
+                    <writeable>true</writeable>
+                </properties>
+                <logicalAction/>
+                <physicalInteger>
+                    <operationType>command</operationType>
+                </physicalInteger>
+                <packets>
+                    <packet id="STOP">
                         <type>set</type>
                         <responseId>LEVEL_INFO</responseId>
                     </packet>
