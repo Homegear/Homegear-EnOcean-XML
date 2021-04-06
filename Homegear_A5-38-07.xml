@@ -103,9 +103,100 @@
                     <parameterId>STATUS</parameterId>
                 </element>
                 <element>
+                    <bitIndex>32</bitIndex>
+                    <bitSize>1</bitSize>
+                    <constValueInteger>0</constValueInteger>
+                </element>
+                <element>
                     <bitIndex>36</bitIndex>
                     <bitSize>1</bitSize>
                     <constValueInteger>1</constValueInteger>
+                </element>
+            </binaryPayload>
+        </packet>
+        <packet id="LEVEL_INFO_ACK">
+            <direction>toCentral</direction>
+            <type>0xA5</type>
+            <channel>1</channel>
+            <binaryPayload>
+                <element>
+                    <bitIndex>8</bitIndex>
+                    <bitSize>8</bitSize>
+                    <parameterId>LEVEL</parameterId>
+                </element>
+                <element>
+                    <bitIndex>28</bitIndex>
+                    <bitSize>2</bitSize>
+                    <parameterId>END_POSITION</parameterId>
+                </element>
+                <element>
+                    <bitIndex>30</bitIndex>
+                    <bitSize>2</bitSize>
+                    <parameterId>STATUS</parameterId>
+                </element>
+                <element>
+                    <bitIndex>32</bitIndex>
+                    <bitSize>1</bitSize>
+                    <constValueInteger>1</constValueInteger>
+                </element>
+                <element>
+                    <bitIndex>36</bitIndex>
+                    <bitSize>1</bitSize>
+                    <constValueInteger>1</constValueInteger>
+                </element>
+            </binaryPayload>
+        </packet>
+        <packet id="STEP_UP_SET">
+            <direction>fromCentral</direction>
+            <type>0xA5</type>
+            <subtype>1</subtype>
+            <binaryPayload>
+                <element>
+                    <bitIndex>8</bitIndex>
+                    <bitSize>8</bitSize>
+                    <constValueInteger>7</constValueInteger>
+                </element>
+                <element>
+                    <bitIndex>16</bitIndex>
+                    <bitSize>8</bitSize>
+                    <constValueInteger>0</constValueInteger>
+                </element>
+                <element>
+                    <bitIndex>24</bitIndex>
+                    <bitSize>8</bitSize>
+                    <constValueInteger>0</constValueInteger>
+                </element>
+                <element>
+                    <bitIndex>32</bitIndex>
+                    <bitSize>8</bitSize>
+                    <constValueInteger>0x58</constValueInteger>
+                </element>
+            </binaryPayload>
+        </packet>
+        <packet id="STEP_DOWN_SET">
+            <direction>fromCentral</direction>
+            <type>0xA5</type>
+            <subtype>1</subtype>
+            <binaryPayload>
+                <element>
+                    <bitIndex>8</bitIndex>
+                    <bitSize>8</bitSize>
+                    <constValueInteger>7</constValueInteger>
+                </element>
+                <element>
+                    <bitIndex>16</bitIndex>
+                    <bitSize>8</bitSize>
+                    <constValueInteger>0</constValueInteger>
+                </element>
+                <element>
+                    <bitIndex>24</bitIndex>
+                    <bitSize>8</bitSize>
+                    <constValueInteger>0</constValueInteger>
+                </element>
+                <element>
+                    <bitIndex>32</bitIndex>
+                    <bitSize>8</bitSize>
+                    <constValueInteger>0x68</constValueInteger>
                 </element>
             </binaryPayload>
         </packet>
@@ -330,7 +421,7 @@
                     </packet>
                     <packet id="LEVEL_SET">
                         <type>set</type>
-                        <responseId>LEVEL_INFO</responseId>
+                        <responseId>LEVEL_INFO_ACK</responseId>
                     </packet>
                 </packets>
             </parameter>
@@ -402,7 +493,7 @@
             </parameter>
             <parameter id="OPEN">
                 <properties>
-                    <readable>true</readable>
+                    <readable>false</readable>
                     <writeable>true</writeable>
                 </properties>
                 <logicalAction/>
@@ -412,13 +503,13 @@
                 <packets>
                     <packet id="OPEN">
                         <type>set</type>
-                        <responseId>LEVEL_INFO</responseId>
+                        <responseId>LEVEL_INFO_ACK</responseId>
                     </packet>
                 </packets>
             </parameter>
             <parameter id="STOP">
                 <properties>
-                    <readable>true</readable>
+                    <readable>false</readable>
                     <writeable>true</writeable>
                 </properties>
                 <logicalAction/>
@@ -428,13 +519,13 @@
                 <packets>
                     <packet id="STOP">
                         <type>set</type>
-                        <responseId>LEVEL_INFO</responseId>
+                        <responseId>LEVEL_INFO_ACK</responseId>
                     </packet>
                 </packets>
             </parameter>
             <parameter id="CLOSE">
                 <properties>
-                    <readable>true</readable>
+                    <readable>false</readable>
                     <writeable>true</writeable>
                 </properties>
                 <logicalAction/>
@@ -444,7 +535,39 @@
                 <packets>
                     <packet id="CLOSE">
                         <type>set</type>
-                        <responseId>LEVEL_INFO</responseId>
+                        <responseId>LEVEL_INFO_ACK</responseId>
+                    </packet>
+                </packets>
+            </parameter>
+            <parameter id="STEP_UP">
+                <properties>
+                    <readable>false</readable>
+                    <writeable>true</writeable>
+                </properties>
+                <logicalAction/>
+                <physicalInteger>
+                    <operationType>command</operationType>
+                </physicalInteger>
+                <packets>
+                    <packet id="STEP_UP_SET">
+                        <type>set</type>
+                        <responseId>LEVEL_INFO_ACK</responseId>
+                    </packet>
+                </packets>
+            </parameter>
+            <parameter id="STEP_DOWN">
+                <properties>
+                    <readable>false</readable>
+                    <writeable>true</writeable>
+                </properties>
+                <logicalAction/>
+                <physicalInteger>
+                    <operationType>command</operationType>
+                </physicalInteger>
+                <packets>
+                    <packet id="STEP_DOWN_SET">
+                        <type>set</type>
+                        <responseId>LEVEL_INFO_ACK</responseId>
                     </packet>
                 </packets>
             </parameter>
