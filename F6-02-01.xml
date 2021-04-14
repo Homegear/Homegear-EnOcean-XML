@@ -16,7 +16,7 @@
 	</supportedDevices>
 	<properties>
 		<receiveMode>none</receiveMode>
-		<pairingMethod>createDevice</pairingMethod>
+		<pairingMethod>setInstallMode[+eep]</pairingMethod>
 	</properties>
 	<functions xmlns="https://homegear.eu/xmlNamespaces/DeviceType">
 		<function xmlns="https://homegear.eu/xmlNamespaces/FunctionGroupType" channel="0" type="MAINTENANCE">
