@@ -61,7 +61,7 @@
 				<element>
 					<bitIndex>16</bitIndex>
 					<bitSize>8</bitSize>
-					<parameterId>ANGLE</parameterId>
+					<parameterId>CURRENT_STATE_3</parameterId>
 				</element>
 				<element>
 					<bitIndex>24</bitIndex>
@@ -255,7 +255,7 @@
 			</parameter>
 		</variables>
 		<variables id="EnOceanVariables">
-			<parameter id="ANGLE">
+			<parameter id="CURRENT_STATE_3">
 				<properties>
 					<readable>true</readable>
 					<writeable>false</writeable>
@@ -265,7 +265,7 @@
 					<maximumValue>255</maximumValue>
 					<defaultValue>0</defaultValue>
 				</logicalInteger>
-				<physicalInteger groupId="ANGLE">
+				<physicalInteger groupId="CURRENT_STATE_3">
 					<operationType>command</operationType>
 				</physicalInteger>
 				<packets>
