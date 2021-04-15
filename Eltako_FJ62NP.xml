@@ -199,7 +199,7 @@
 				<logicalInteger>
 					<minimumValue>0</minimumValue>
 					<maximumValue>10000</maximumValue>
-					<defaultValue>500</defaultValue>
+					<defaultValue>1000</defaultValue>
 				</logicalInteger>
 				<physicalNone>
 					<operationType>config</operationType>
