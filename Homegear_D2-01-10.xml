@@ -467,7 +467,7 @@
                     </packet>
                     <packet id="STATE_SET_1">
                         <type>set</type>
-                        <responseId>ANY</responseId>
+                        <responseId>STATE_INFO_1</responseId>
                     </packet>
                 </packets>
             </parameter>
@@ -578,7 +578,7 @@
                     </packet>
                     <packet id="STATE_SET_2">
                         <type>set</type>
-                        <responseId>ANY</responseId>
+                        <responseId>STATE_INFO_2</responseId>
                     </packet>
                 </packets>
             </parameter>

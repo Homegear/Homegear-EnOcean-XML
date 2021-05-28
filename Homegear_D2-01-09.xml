@@ -127,11 +127,6 @@
                     <constValueInteger>1</constValueInteger>
                 </element>
                 <element>
-                    <bitIndex>16</bitIndex>
-                    <bitSize>3</bitSize>
-                    <parameterId>DIM_TIMER</parameterId>
-                </element>
-                <element>
                     <bitIndex>24</bitIndex>
                     <bitSize>8</bitSize>
                     <parameterId>STATE</parameterId>
@@ -325,7 +320,7 @@
                     </packet>
                     <packet id="STATE_SET">
                         <type>set</type>
-                        <responseId>ANY</responseId>
+                        <responseId>STATE_INFO</responseId>
                     </packet>
                 </packets>
             </parameter>
