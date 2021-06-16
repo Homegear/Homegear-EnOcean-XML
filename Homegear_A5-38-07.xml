@@ -164,7 +164,7 @@
                 <element>
                     <bitIndex>24</bitIndex>
                     <bitSize>8</bitSize>
-                    <constValueInteger>0</constValueInteger>
+                    <parameterId>STEP_TIME</parameterId>
                 </element>
                 <element>
                     <bitIndex>32</bitIndex>
@@ -191,12 +191,39 @@
                 <element>
                     <bitIndex>24</bitIndex>
                     <bitSize>8</bitSize>
-                    <constValueInteger>0</constValueInteger>
+                    <parameterId>STEP_TIME</parameterId>
                 </element>
                 <element>
                     <bitIndex>32</bitIndex>
                     <bitSize>8</bitSize>
                     <constValueInteger>0x68</constValueInteger>
+                </element>
+            </binaryPayload>
+        </packet>
+        <packet id="RUNTIME_SET">
+            <direction>fromCentral</direction>
+            <type>0xA5</type>
+            <subtype>1</subtype>
+            <binaryPayload>
+                <element>
+                    <bitIndex>8</bitIndex>
+                    <bitSize>8</bitSize>
+                    <constValueInteger>7</constValueInteger>
+                </element>
+                <element>
+                    <bitIndex>16</bitIndex>
+                    <bitSize>8</bitSize>
+                    <parameterId>RUNTIME_DOWN</parameterId>
+                </element>
+                <element>
+                    <bitIndex>24</bitIndex>
+                    <bitSize>8</bitSize>
+                    <parameterId>RUNTIME_UP</parameterId>
+                </element>
+                <element>
+                    <bitIndex>32</bitIndex>
+                    <bitSize>8</bitSize>
+                    <constValueInteger>0x78</constValueInteger>
                 </element>
             </binaryPayload>
         </packet>
@@ -333,7 +360,7 @@
                 <logicalInteger>
                     <minimumValue>0</minimumValue>
                     <maximumValue>10000</maximumValue>
-                    <defaultValue>200</defaultValue>
+                    <defaultValue>300</defaultValue>
                 </logicalInteger>
                 <physicalNone>
                     <operationType>config</operationType>
@@ -352,6 +379,46 @@
                 <physicalNone>
                     <operationType>config</operationType>
                 </physicalNone>
+            </parameter>
+            <parameter id="LOCAL_CONTROL">
+                <logicalEnumeration>
+                    <defaultValue>0</defaultValue>
+                    <value>
+                        <id>On</id>
+                        <index>0</index>
+                    </value>
+                    <value>
+                        <id>Off</id>
+                        <index>1</index>
+                    </value>
+                    <value>
+                        <id>Ping-triggered off</id>
+                        <index>2</index>
+                    </value>
+                </logicalEnumeration>
+                <physicalInteger>
+                    <memoryIndex>2</memoryIndex>
+                    <bitSize>8</bitSize>
+                    <operationType>config</operationType>
+                </physicalInteger>
+            </parameter>
+            <parameter id="DEVICE_TYPE">
+                <logicalEnumeration>
+                    <defaultValue>0</defaultValue>
+                    <value>
+                        <id>Blind and shutter controller</id>
+                        <index>0</index>
+                    </value>
+                    <value>
+                        <id>Dual channel electronic switch with metering</id>
+                        <index>1</index>
+                    </value>
+                </logicalEnumeration>
+                <physicalInteger>
+                    <memoryIndex>2</memoryIndex>
+                    <bitSize>8</bitSize>
+                    <operationType>config</operationType>
+                </physicalInteger>
             </parameter>
         </configParameters>
         <variables id="maint_ch_values">
@@ -419,6 +486,9 @@
                     <packet id="LEVEL_INFO">
                         <type>event</type>
                     </packet>
+                    <packet id="LEVEL_INFO_ACK">
+                        <type>event</type>
+                    </packet>
                     <packet id="LEVEL_SET">
                         <type>set</type>
                         <responseId>LEVEL_INFO_ACK</responseId>
@@ -456,6 +526,9 @@
                     <packet id="LEVEL_INFO">
                         <type>event</type>
                     </packet>
+                    <packet id="LEVEL_INFO_ACK">
+                        <type>event</type>
+                    </packet>
                 </packets>
             </parameter>
             <parameter id="STATUS">
@@ -487,6 +560,9 @@
                 </physicalInteger>
                 <packets>
                     <packet id="LEVEL_INFO">
+                        <type>event</type>
+                    </packet>
+                    <packet id="LEVEL_INFO_ACK">
                         <type>event</type>
                     </packet>
                 </packets>
@@ -539,6 +615,23 @@
                     </packet>
                 </packets>
             </parameter>
+            <parameter id="STEP_TIME">
+                <properties>
+                    <readable>true</readable>
+                    <writeable>true</writeable>
+                </properties>
+                <logicalInteger>
+                    <minimumValue>5</minimumValue>
+                    <maximumValue>100</maximumValue>
+                    <defaultValue>0</defaultValue>
+                    <specialValues>
+                        <specialValue id="default">0</specialValue>
+                    </specialValues>
+                </logicalInteger>
+                <physicalInteger groupId="STEP_TIME">
+                    <operationType>store</operationType>
+                </physicalInteger>
+            </parameter>
             <parameter id="STEP_UP">
                 <properties>
                     <readable>false</readable>
@@ -566,6 +659,54 @@
                 </physicalInteger>
                 <packets>
                     <packet id="STEP_DOWN_SET">
+                        <type>set</type>
+                        <responseId>LEVEL_INFO_ACK</responseId>
+                    </packet>
+                </packets>
+            </parameter>
+            <parameter id="RUNTIME_DOWN">
+                <properties>
+                    <readable>false</readable>
+                    <writeable>true</writeable>
+                </properties>
+                <logicalInteger>
+                    <minimumValue>1</minimumValue>
+                    <maximumValue>254</maximumValue>
+                    <defaultValue>255</defaultValue>
+                    <specialValues>
+                        <specialValue id="off">0</specialValue>
+                        <specialValue id="reset">255</specialValue>
+                    </specialValues>
+                </logicalInteger>
+                <physicalInteger groupId="RUNTIME_DOWN">
+                    <operationType>command</operationType>
+                </physicalInteger>
+                <packets>
+                    <packet id="RUNTIME_SET">
+                        <type>set</type>
+                        <responseId>LEVEL_INFO_ACK</responseId>
+                    </packet>
+                </packets>
+            </parameter>
+            <parameter id="RUNTIME_UP">
+                <properties>
+                    <readable>false</readable>
+                    <writeable>true</writeable>
+                </properties>
+                <logicalInteger>
+                    <minimumValue>1</minimumValue>
+                    <maximumValue>254</maximumValue>
+                    <defaultValue>255</defaultValue>
+                    <specialValues>
+                        <specialValue id="off">0</specialValue>
+                        <specialValue id="reset">255</specialValue>
+                    </specialValues>
+                </logicalInteger>
+                <physicalInteger groupId="RUNTIME_UP">
+                    <operationType>command</operationType>
+                </physicalInteger>
+                <packets>
+                    <packet id="RUNTIME_SET">
                         <type>set</type>
                         <responseId>LEVEL_INFO_ACK</responseId>
                     </packet>
