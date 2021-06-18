@@ -227,6 +227,28 @@
                 </element>
             </binaryPayload>
         </packet>
+        <packet id="SLATS_REVERSAL_TIME_SET">
+            <direction>fromCentral</direction>
+            <type>0xA5</type>
+            <subtype>1</subtype>
+            <binaryPayload>
+                <element>
+                    <bitIndex>8</bitIndex>
+                    <bitSize>8</bitSize>
+                    <constValueInteger>7</constValueInteger>
+                </element>
+                <element>
+                    <bitIndex>16</bitIndex>
+                    <bitSize>8</bitSize>
+                    <parameterId>SLATS_REVERSAL_TIME</parameterId>
+                </element>
+                <element>
+                    <bitIndex>32</bitIndex>
+                    <bitSize>8</bitSize>
+                    <constValueInteger>0x88</constValueInteger>
+                </element>
+            </binaryPayload>
+        </packet>
         <packet id="LEVEL_SET">
             <direction>fromCentral</direction>
             <type>0xA5</type>
@@ -707,6 +729,30 @@
                 </physicalInteger>
                 <packets>
                     <packet id="RUNTIME_SET">
+                        <type>set</type>
+                        <responseId>LEVEL_INFO_ACK</responseId>
+                    </packet>
+                </packets>
+            </parameter>
+            <parameter id="SLATS_REVERSAL_TIME">
+                <properties>
+                    <readable>false</readable>
+                    <writeable>true</writeable>
+                </properties>
+                <logicalInteger>
+                    <minimumValue>1</minimumValue>
+                    <maximumValue>254</maximumValue>
+                    <defaultValue>255</defaultValue>
+                    <specialValues>
+                        <specialValue id="off">0</specialValue>
+                        <specialValue id="reset">255</specialValue>
+                    </specialValues>
+                </logicalInteger>
+                <physicalInteger groupId="SLATS_REVERSAL_TIME">
+                    <operationType>command</operationType>
+                </physicalInteger>
+                <packets>
+                    <packet id="SLATS_REVERSAL_TIME_SET">
                         <type>set</type>
                         <responseId>LEVEL_INFO_ACK</responseId>
                     </packet>
