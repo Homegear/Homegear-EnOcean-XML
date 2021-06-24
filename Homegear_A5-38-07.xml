@@ -442,6 +442,21 @@
                     <operationType>config</operationType>
                 </physicalInteger>
             </parameter>
+            <parameter id="STEP_TIME">
+                <properties>
+                    <unit>100 ms</unit>
+                </properties>
+                <logicalInteger>
+                    <defaultValue>0</defaultValue>
+                    <minimumValue>0</minimumValue>
+                    <maximumValue>100</maximumValue>
+                </logicalInteger>
+                <physicalInteger>
+                    <memoryIndex>4</memoryIndex>
+                    <bitSize>8</bitSize>
+                    <operationType>config</operationType>
+                </physicalInteger>
+            </parameter>
         </configParameters>
         <variables id="maint_ch_values">
             <parameter id="UNREACH">
