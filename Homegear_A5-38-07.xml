@@ -437,7 +437,7 @@
                     </value>
                 </logicalEnumeration>
                 <physicalInteger>
-                    <memoryIndex>2</memoryIndex>
+                    <memoryIndex>3</memoryIndex>
                     <bitSize>8</bitSize>
                     <operationType>config</operationType>
                 </physicalInteger>
