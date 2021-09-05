@@ -62,11 +62,11 @@
 				<element>
 					<bitIndex>12</bitIndex>
 					<bitSize>4</bitSize>
-					<constValueInteger>3</constValueInteger>
+					<constValueInteger>2</constValueInteger>
 				</element>
 				<element>
 					<parameterId>STATE</parameterId>
-					<constValueInteger>1</constValueInteger>
+					<constValueInteger>0</constValueInteger>
 				</element>
 			</binaryPayload>
 		</packet>
@@ -78,7 +78,7 @@
 				<element>
 					<bitIndex>12</bitIndex>
 					<bitSize>4</bitSize>
-					<constValueInteger>2</constValueInteger>
+					<constValueInteger>3</constValueInteger>
 				</element>
 				<element>
 					<parameterId>STATE</parameterId>
