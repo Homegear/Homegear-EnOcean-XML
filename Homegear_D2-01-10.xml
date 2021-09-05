@@ -44,6 +44,11 @@
                 <linkTableGatewayEep>A53808</linkTableGatewayEep>
                 <deviceConfigurationSize>4</deviceConfigurationSize>
 
+                <meshingRepeater>false</meshingRepeater>
+                <meshingEndpoint>true</meshingEndpoint>
+
+                <firmwareUpdates>true</firmwareUpdates>
+
                 <unlock>true</unlock><!-- 0x001 -->
                 <lock>true</lock><!-- 0x002 -->
                 <setCode>true</setCode><!-- 0x003 -->

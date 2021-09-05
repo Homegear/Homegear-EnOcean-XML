@@ -41,6 +41,11 @@
                 <linkTableGatewayEep>A53808</linkTableGatewayEep>
                 <deviceConfigurationSize>4</deviceConfigurationSize>
 
+                <meshingRepeater>true</meshingRepeater>
+                <meshingEndpoint>true</meshingEndpoint>
+
+                <firmwareUpdates>true</firmwareUpdates>
+
                 <unlock>true</unlock><!-- 0x001 -->
                 <lock>true</lock><!-- 0x002 -->
                 <setCode>true</setCode><!-- 0x003 -->
@@ -267,6 +272,12 @@
                     <readable>true</readable>
                     <writeable>false</writeable>
                     <service>true</service>
+                    <priority>1</priority>
+                    <ibsId>offline</ibsId>
+                    <labels>
+                        <label lang="de">Offline</label>
+                        <label lang="en">Offline</label>
+                    </labels>
                 </properties>
                 <logicalBoolean/>
                 <physicalBoolean>
@@ -279,6 +290,12 @@
                     <writeable>true</writeable>
                     <service>true</service>
                     <sticky>true</sticky>
+                    <priority>1</priority>
+                    <ibsId>wasOffline</ibsId>
+                    <labels>
+                        <label lang="de">Was offline</label>
+                        <label lang="en">Was offline</label>
+                    </labels>
                 </properties>
                 <logicalBoolean/>
                 <physicalBoolean>

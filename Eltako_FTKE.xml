@@ -54,6 +54,38 @@
 				</element>
 			</binaryPayload>
 		</packet>
+		<packet id="INFO_E_1">
+			<direction>toCentral</direction>
+			<type>0x32</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<element>
+					<bitIndex>12</bitIndex>
+					<bitSize>4</bitSize>
+					<constValueInteger>3</constValueInteger>
+				</element>
+				<element>
+					<parameterId>STATE</parameterId>
+					<constValueInteger>1</constValueInteger>
+				</element>
+			</binaryPayload>
+		</packet>
+		<packet id="INFO_E_2">
+			<direction>toCentral</direction>
+			<type>0x32</type>
+			<channel>1</channel>
+			<binaryPayload>
+				<element>
+					<bitIndex>12</bitIndex>
+					<bitSize>4</bitSize>
+					<constValueInteger>2</constValueInteger>
+				</element>
+				<element>
+					<parameterId>STATE</parameterId>
+					<constValueInteger>1</constValueInteger>
+				</element>
+			</binaryPayload>
+		</packet>
 	</packets>
 	<parameterGroups xmlns="https://homegear.eu/xmlNamespaces/DeviceType">
 		<configParameters id="EnOceanConfig">
@@ -121,6 +153,12 @@
 						<type>event</type>
 					</packet>
 					<packet id="INFO_2">
+						<type>event</type>
+					</packet>
+					<packet id="INFO_E_1">
+						<type>event</type>
+					</packet>
+					<packet id="INFO_E_2">
 						<type>event</type>
 					</packet>
 				</packets>
