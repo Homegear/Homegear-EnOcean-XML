@@ -43,6 +43,7 @@
 
                 <meshingRepeater>false</meshingRepeater>
                 <meshingEndpoint>true</meshingEndpoint>
+                <enforceMeshing>true</enforceMeshing>
 
                 <firmwareUpdates>true</firmwareUpdates>
 
