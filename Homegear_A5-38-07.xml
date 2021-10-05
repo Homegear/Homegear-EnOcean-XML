@@ -363,6 +363,28 @@
                 </element>
             </binaryPayload>
         </packet>
+        <packet id="LOCAL_CONTROL_ENABLE_SET">
+            <direction>fromCentral</direction>
+            <type>0xD2</type>
+            <channel>1</channel>
+            <binaryPayload>
+                <element>
+                    <bitIndex>8</bitIndex>
+                    <bitSize>8</bitSize>
+                    <constValueInteger>0x82</constValueInteger>
+                </element>
+                <element>
+                    <bitIndex>18</bitIndex>
+                    <bitSize>1</bitSize>
+                    <parameterId>LOCAL_CONTROL_ENABLE</parameterId>
+                </element>
+                <element>
+                    <bitIndex>19</bitIndex>
+                    <bitSize>5</bitSize>
+                    <constValueInteger>0x1E</constValueInteger>
+                </element>
+            </binaryPayload>
+        </packet>
     </packets>
     <parameterGroups xmlns="https://homegear.eu/xmlNamespaces/DeviceType">
         <configParameters id="EnOceanConfig">
@@ -776,6 +798,23 @@
                     <packet id="SLATS_REVERSAL_TIME_SET">
                         <type>set</type>
                         <responseId>LEVEL_INFO_ACK</responseId>
+                    </packet>
+                </packets>
+            </parameter>
+            <parameter id="LOCAL_CONTROL_ENABLE">
+                <properties>
+                    <readable>true</readable>
+                    <writeable>true</writeable>
+                </properties>
+                <logicalBoolean>
+                    <defaultValue>false</defaultValue>
+                </logicalBoolean>
+                <physicalInteger groupId="LOCAL_CONTROL_ENABLE">
+                    <operationType>command</operationType>
+                </physicalInteger>
+                <packets>
+                    <packet id="LOCAL_CONTROL_ENABLE_SET">
+                        <type>set</type>
                     </packet>
                 </packets>
             </parameter>
