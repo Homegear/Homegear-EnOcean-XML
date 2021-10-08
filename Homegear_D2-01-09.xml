@@ -166,7 +166,7 @@
                 <logicalInteger>
                     <minimumValue>0</minimumValue>
                     <maximumValue>86400</maximumValue>
-                    <defaultValue>180</defaultValue>
+                    <defaultValue>540</defaultValue>
                 </logicalInteger>
                 <physicalNone>
                     <operationType>config</operationType>
