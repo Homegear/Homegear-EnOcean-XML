@@ -32,7 +32,7 @@
 
                 <addressedRemanPackets>true</addressedRemanPackets>
 
-                <forceEncryption>true</forceEncryption>
+                <forceEncryption>false</forceEncryption>
                 <unencryptedUpdates>true</unencryptedUpdates>
                 <slf>243</slf>
 
