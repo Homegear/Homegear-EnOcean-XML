@@ -33,7 +33,7 @@
                 <unencryptedUpdates>true</unencryptedUpdates>
                 <slf>243</slf>
 
-                <recomVersion>v1.1</recomVersion>
+                <recomVersion>v1.3</recomVersion>
 
                 <!-- Size is actually 30, but this reduces pairing time -->
                 <inboundLinkTableSize>2</inboundLinkTableSize>
@@ -68,6 +68,7 @@
                 <setLinkTableGpEntry>false</setLinkTableGpEntry><!-- 0x214 -->
                 <getSecurityProfile>false</getSecurityProfile><!-- 0x215 -->
                 <setSecurityProfile>true</setSecurityProfile><!-- 0x216 -->
+                <setSecurityProfileHasAddresses>false</setSecurityProfileHasAddresses>
                 <remoteSetLearnMode>false</remoteSetLearnMode><!-- 0x220 -->
                 <triggerOutboundRemoteTeachRequest>false</triggerOutboundRemoteTeachRequest><!-- 0x221 -->
                 <resetToDefaults>false</resetToDefaults><!-- 0x224 -->
