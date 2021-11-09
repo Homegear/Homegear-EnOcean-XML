@@ -364,6 +364,23 @@
                 </element>
             </binaryPayload>
         </packet>
+        <packet id="STATUS_REQUEST">
+            <direction>fromCentral</direction>
+            <type>0xD2</type>
+            <subtype>1</subtype>
+            <binaryPayload>
+                <element>
+                    <bitIndex>8</bitIndex>
+                    <bitSize>8</bitSize>
+                    <constValueInteger>3</constValueInteger>
+                </element>
+                <element>
+                    <bitIndex>19</bitIndex>
+                    <bitSize>5</bitSize>
+                    <constValueInteger>0</constValueInteger>
+                </element>
+            </binaryPayload>
+        </packet>
         <packet id="LOCAL_CONTROL_ENABLE_SET">
             <direction>fromCentral</direction>
             <type>0xD2</type>
@@ -816,6 +833,22 @@
                 <packets>
                     <packet id="LOCAL_CONTROL_ENABLE_SET">
                         <type>set</type>
+                    </packet>
+                </packets>
+            </parameter>
+            <parameter id="REQUEST_STATUS">
+                <properties>
+                    <readable>false</readable>
+                    <writeable>true</writeable>
+                </properties>
+                <logicalAction/>
+                <physicalInteger groupId="REQUEST_STATUS">
+                    <operationType>command</operationType>
+                </physicalInteger>
+                <packets>
+                    <packet id="STATUS_REQUEST">
+                        <type>set</type>
+                        <responseId>ANY</responseId>
                     </packet>
                 </packets>
             </parameter>
